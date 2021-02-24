@@ -11,6 +11,7 @@ function getRandomID(min, max) {
 
 function getPokemon() {
   var randomID = getRandomID(1, 151);
+  var pokemonName;
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + randomID);
   xhr.responseType = 'json';
@@ -20,6 +21,8 @@ function getPokemon() {
     }
 
     $pokemonImg.setAttribute('src', xhr.response.sprites.front_default);
+
+    var pokemonName = xhr.response.species.name;
 
   });
   xhr.send();
