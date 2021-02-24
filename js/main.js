@@ -1,13 +1,18 @@
 var $pokemonImg = document.querySelector('.pokemon-img')
-var randomID = getRandomID(1, 151);
 
-addEventListener('load', getPokemon(randomID));
-
+addEventListener('load', getPokemon);
 
 
-function getPokemon(pokemonID) {
+function getRandomID(min, max) {
+  var randomVal = Math.random() * (max - min) + min;
+  return Math.round(randomVal);
+}
+
+
+function getPokemon() {
+  var randomID = getRandomID(1, 151);
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + pokemonID);
+  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + randomID);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     if (xhr.status !== 200) {
@@ -18,11 +23,4 @@ function getPokemon(pokemonID) {
 
   });
   xhr.send();
-}
-
-
-
-function getRandomID(min, max) {
-  var randomVal = Math.random() * (max - min) + min;
-  return Math.round(randomVal);
 }
