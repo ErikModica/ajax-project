@@ -1,11 +1,10 @@
+var rightAnswer = false;
 var $pokemonImg = document.querySelector('.pokemon-img');
 var $answerBox = document.querySelector('.answer-input');
+var $answerButton = document.querySelector('button');
 
 addEventListener('load', getPokemon);
-
-// $answerBox.addEventListener('input', function(event) {
-//   console.log(event.target.value);
-// });
+$answerBox.addEventListener('keydown', getNextPokemon);
 
 
 function getRandomID(min, max) {
@@ -35,44 +34,28 @@ function getPokemon() {
 
     $answerBox.addEventListener('input', function (event) {
       var guess = event.target.value;
+      guess = guess.toLowerCase();
       console.log(guess);
-      if ($answerBox.className === 'answer-input wrong') {
-        $answerBox.className = 'answer-input';
-      }
 
-      if (guess.length === pokemonName.length) {
-        if (guess === pokemonName) {
-          console.log('ur sicckk dude')
-        } else {
-          $answerBox.className = 'answer-input wrong';
-          event.target.value = '';
-        }
+      if (guess === pokemonName) {
+        console.log('ur sicckk dude')
+        rightAnswer = true;
+        $answerBox.className = 'answer-input right';
 
       }
+
     });
-
-
-
-
-
-
-
-
-
-
 
 
   });
   xhr.send();
 }
 
-// function compareGuess(pokemon, event) {
-//   var guess = event.target.value;
-//   console.log(guess);
-//   // if (guess.length === pokemon.length) {
-//     if (guess === pokemon) {
-//       console.log('ur sicckk dude')
-//     }
-//   // }
-
-// }
+function getNextPokemon(event) {
+  if (rightAnswer && event.key === 'Enter') {
+    getPokemon();
+    rightAnswer = false;
+    event.target.value = null;
+    $answerBox.className = 'answer-input';
+  }
+}
