@@ -1,6 +1,11 @@
-var $pokemonImg = document.querySelector('.pokemon-img')
+var $pokemonImg = document.querySelector('.pokemon-img');
+var $answerBox = document.querySelector('.answer-input');
 
 addEventListener('load', getPokemon);
+
+$answerBox.addEventListener('input', function(event) {
+  console.log(event.target.value);
+});
 
 
 function getRandomID(min, max) {
