@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.column-ntp {
+  flex-basis: 90%;
+  max-width: 800px;
+}
+
+.column-img {
+  display: flex;
+  justify-content: center;
+  flex-basis: 70%;
+  max-width: 600px;
+}
+
+.column-img > img {
+  width: 100%;
+}
