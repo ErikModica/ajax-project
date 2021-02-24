@@ -1,10 +1,19 @@
-function getPokemon() {
+var $pokemonImg = document.querySelector('.pokemon-img')
+var randomID = getRandomID(1, 151);
+
+
+
+function getPokemon(pokemonID) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/898');
+  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + pokemonID);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    console.log(xhr.response);
-    console.log(xhr.status);
+    if (xhr.status !== 200) {
+    console.log('INVALID POKEMON ID')
+    }
+
+    $pokemonImg.setAttribute('src', xhr.response.sprites.front_default);
+
   });
   xhr.send();
 }
