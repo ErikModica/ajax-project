@@ -36,10 +36,18 @@ function getPokemon() {
     $answerBox.addEventListener('input', function (event) {
       var guess = event.target.value;
       console.log(guess);
+      if ($answerBox.className === 'answer-input wrong') {
+        $answerBox.className = 'answer-input';
+      }
+
       if (guess.length === pokemonName.length) {
         if (guess === pokemonName) {
           console.log('ur sicckk dude')
+        } else {
+          $answerBox.className = 'answer-input wrong';
+          event.target.value = '';
         }
+
       }
     });
 
