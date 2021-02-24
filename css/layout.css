@@ -7,4 +7,16 @@
 
 .column-ntp {
   flex-basis: 80%;
+  max-width: 800px;
+}
+
+.column-img {
+  display: flex;
+  justify-content: center;
+  flex-basis: 70%;
+  max-width: 600px;
+}
+
+.column-img > img {
+  width: 100%;
 }
