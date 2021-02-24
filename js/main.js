@@ -1,6 +1,8 @@
 var $pokemonImg = document.querySelector('.pokemon-img')
 var randomID = getRandomID(1, 151);
 
+addEventListener('load', getPokemon(randomID));
+
 
 
 function getPokemon(pokemonID) {
