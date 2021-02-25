@@ -43,6 +43,22 @@ h1 {
   max-width: 400px;
 }
 
+.button-skip {
+  width: 20%;
+  height: 35px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: linear-gradient(to left bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.7)
+  );
+  border-style: none;
+  padding: 5px;
+  max-width: 150px;
+  margin-left: 1.5rem;
+}
+
 .right {
   color: limegreen;
   font-weight: bold;

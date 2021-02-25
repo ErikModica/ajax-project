@@ -1,14 +1,17 @@
 var rightAnswer = false;
 var currentID = 0;
+var pokemonName = null;
 var randomIDList = shuffle(1, 10);
 var $pokemonImg = document.querySelector('.pokemon-img');
 var $answerBox = document.querySelector('.answer-input');
+var $skipButton = document.querySelector('.button-skip');
 
 addEventListener('load', getPokemon);
 $answerBox.addEventListener('keydown', getNextPokemon);
+$answerBox.addEventListener('input', correctPokemon);
+$skipButton.addEventListener('click', skipPokemon);
 
 function getPokemon() {
-  var pokemonName;
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + randomIDList[currentID]);
   xhr.responseType = 'json';
@@ -25,20 +28,20 @@ function getPokemon() {
     }
     console.log(pokemonName);
 
-    $answerBox.addEventListener('input', function (event) {
-      var guess = event.target.value;
-      guess = guess.toLowerCase();
-      console.log(guess);
-
-      if (guess === pokemonName) {
-        console.log('ur sicckk dude')
-        rightAnswer = true;
-        $answerBox.className = 'answer-input right';
-        console.log(rightAnswer);
-      }
-    });
   });
   xhr.send();
+}
+
+function correctPokemon(event) {
+  var guess = event.target.value;
+  guess = guess.toLowerCase();
+  console.log(guess);
+  console.log(pokemonName);
+
+  if (guess === pokemonName) {
+    rightAnswer = true;
+    $answerBox.className = 'answer-input right';
+  }
 }
 
 function getNextPokemon(event) {
@@ -50,8 +53,6 @@ function getNextPokemon(event) {
     $answerBox.className = 'answer-input';
   }
 }
-
-
 
 function shuffle(min, max) {
   var array = [];
@@ -70,4 +71,10 @@ function shuffle(min, max) {
     array[randomVal] = hold;
   }
   return array;
+}
+
+function skipPokemon() {
+  var switchID = randomIDList.splice(currentID, 1);
+  randomIDList.push(switchID[0]);
+  getPokemon();
 }
