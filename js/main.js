@@ -1,5 +1,6 @@
 var rightAnswer = false;
 var currentID = 0;
+var pokemonName = null;
 var randomIDList = shuffle(1, 10);
 var $pokemonImg = document.querySelector('.pokemon-img');
 var $answerBox = document.querySelector('.answer-input');
@@ -7,10 +8,10 @@ var $skipButton = document.querySelector('.button-skip');
 
 addEventListener('load', getPokemon);
 $answerBox.addEventListener('keydown', getNextPokemon);
+$answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
 
 function getPokemon() {
-  var pokemonName = null;
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + randomIDList[currentID]);
   xhr.responseType = 'json';
@@ -27,22 +28,20 @@ function getPokemon() {
     }
     console.log(pokemonName);
 
-    $answerBox.addEventListener('input', function (event) {
-      var guess = event.target.value;
-      guess = guess.toLowerCase();
-      console.log(guess);
-      console.log(pokemonName);
-      //why does it save the data that I input before.
-
-      if (guess === pokemonName) {
-        rightAnswer = true;
-        $answerBox.className = 'answer-input right';
-        pokemonName = null;
-      }
-    });
-
   });
   xhr.send();
+}
+
+function correctPokemon(event) {
+  var guess = event.target.value;
+  guess = guess.toLowerCase();
+  console.log(guess);
+  console.log(pokemonName);
+
+  if (guess === pokemonName) {
+    rightAnswer = true;
+    $answerBox.className = 'answer-input right';
+  }
 }
 
 function getNextPokemon(event) {
