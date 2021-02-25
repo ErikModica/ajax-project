@@ -35,10 +35,8 @@ function getPokemon() {
       //why does it save the data that I input before.
 
       if (guess === pokemonName) {
-        console.log('ur sicckk dude')
         rightAnswer = true;
         $answerBox.className = 'answer-input right';
-        console.dir(pokemonName);
         pokemonName = null;
       }
     });
