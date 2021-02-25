@@ -5,11 +5,27 @@ var randomIDList = shuffle(1, 10);
 var $pokemonImg = document.querySelector('.pokemon-img');
 var $answerBox = document.querySelector('.answer-input');
 var $skipButton = document.querySelector('.button-skip');
+var $timeChoice = document.querySelector('.time-form');
+var $homeContainer = document.querySelector('.home');
+var $quizContainer = document.querySelector('.quiz')
 
 addEventListener('load', getPokemon);
 $answerBox.addEventListener('keydown', getNextPokemon);
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
+
+$timeChoice.addEventListener('submit', function(event) {
+  event.preventDefault();
+  console.log('seikai');
+  $homeContainer.className = 'container home hidden';
+  $quizContainer.className = 'container quiz';
+})
+
+
+
+
+
+
 
 function getPokemon() {
   var xhr = new XMLHttpRequest();
