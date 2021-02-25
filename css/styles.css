@@ -3,7 +3,7 @@ main {
   background: linear-gradient(to right top,
     rgb(255, 96, 96),
     rgb(255, 170, 170)
-    );
+  );
 }
 
 h1 {
@@ -12,19 +12,38 @@ h1 {
 }
 
 .column-ntp {
-    background: linear-gradient(to left bottom,
+  background: linear-gradient(to left bottom,
     rgba(255, 255, 255, 0.3),
     rgba(255, 255, 255, 0.7)
-    );
+  );
   border-radius: 15px;
   padding: .4rem;
 }
 
 .column-img {
-      background: linear-gradient(to left bottom,
+  background: linear-gradient(to left bottom,
     rgba(255, 255, 255, 0.3),
     rgba(255, 255, 255, 0.7)
-    );
-    padding: 1rem;
-    border-radius: 15px;
+  );
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.answer-input {
+  width: 60%;
+  height: 35px;
+  font-size: 24px;
+  border-radius: 10px;
+  background: linear-gradient(to left bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.7)
+  );
+  border-style: none;
+  padding: 5px;
+  max-width: 400px;
+}
+
+.right {
+  color: limegreen;
+  font-weight: bold;
 }

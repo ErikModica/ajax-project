@@ -20,3 +20,9 @@
 .column-img > img {
   width: 100%;
 }
+
+.column-answer {
+  display: flex;
+  flex-basis: 90%;
+  justify-content: center;
+}
