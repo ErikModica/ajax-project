@@ -51,8 +51,6 @@ function getNextPokemon(event) {
   }
 }
 
-
-
 function shuffle(min, max) {
   var array = [];
   for (min; min <= max; min++) {
@@ -70,4 +68,11 @@ function shuffle(min, max) {
     array[randomVal] = hold;
   }
   return array;
+}
+
+function skipPokemon() {
+  var switchID = randomIDList.splice(currentID, 1);
+  randomIDList.push(switchID[0]);
+  console.log(randomIDList);
+  currentID++;
 }
