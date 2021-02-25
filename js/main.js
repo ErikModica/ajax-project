@@ -3,12 +3,14 @@ var currentID = 0;
 var randomIDList = shuffle(1, 10);
 var $pokemonImg = document.querySelector('.pokemon-img');
 var $answerBox = document.querySelector('.answer-input');
+var $skipButton = document.querySelector('.button-skip');
 
 addEventListener('load', getPokemon);
 $answerBox.addEventListener('keydown', getNextPokemon);
+$skipButton.addEventListener('click', skipPokemon);
 
 function getPokemon() {
-  var pokemonName;
+  var pokemonName = null;
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + randomIDList[currentID]);
   xhr.responseType = 'json';
@@ -29,14 +31,18 @@ function getPokemon() {
       var guess = event.target.value;
       guess = guess.toLowerCase();
       console.log(guess);
+      console.log(pokemonName);
+      //why does it save the data that I input before.
 
       if (guess === pokemonName) {
         console.log('ur sicckk dude')
         rightAnswer = true;
         $answerBox.className = 'answer-input right';
-        console.log(rightAnswer);
+        console.dir(pokemonName);
+        pokemonName = null;
       }
     });
+
   });
   xhr.send();
 }
@@ -73,6 +79,5 @@ function shuffle(min, max) {
 function skipPokemon() {
   var switchID = randomIDList.splice(currentID, 1);
   randomIDList.push(switchID[0]);
-  console.log(randomIDList);
-  currentID++;
+  getPokemon();
 }

@@ -43,7 +43,7 @@ h1 {
   max-width: 400px;
 }
 
-button {
+.button-skip {
   width: 20%;
   height: 35px;
   font-size: 24px;
