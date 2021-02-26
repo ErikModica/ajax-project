@@ -12,11 +12,14 @@ var $answerBox = document.querySelector('.answer');
 var $skipButton = document.querySelector('.button-skip');
 var $homeContainer = document.querySelector('.home');
 var $quizContainer = document.querySelector('.quiz');
+var $leaderboardContainer = document.querySelector('.leaderboard')
 var $timer = document.querySelector('.timer');
 var $fiveSecondTimer = document.querySelector('.five-second-timer');
 var $dropboxHead = document.querySelector('.dropbox-head');
 var $dropbox = document.querySelector('.dropbox');
 var $goButton = document.querySelector('.button-start');
+var $viewLBButton = document.querySelector('.view-lb');
+var $viewHomeButton = document.querySelector('.view-home');
 
 $answerBox.addEventListener('keydown', getNextPokemon);
 $answerBox.addEventListener('input', correctPokemon);
@@ -24,6 +27,8 @@ $skipButton.addEventListener('click', skipPokemon);
 $dropboxHead.addEventListener('click', showChoices);
 $dropbox.addEventListener('click', timeChoice);
 $goButton.addEventListener('click', startQuiz);
+$viewLBButton.addEventListener('click', showLeaderboard);
+$viewHomeButton.addEventListener('click', showHome);
 
 
 function showChoices() {
@@ -146,4 +151,14 @@ function skipPokemon() {
   randomIDList.push(switchID[0]);
   $answerBox.value = null;
   getPokemon();
+}
+
+function showLeaderboard() {
+  $homeContainer.className = 'container home hidden';
+  $leaderboardContainer.className = 'container leaderboard';
+}
+
+function showHome() {
+  $homeContainer.className = 'container home';
+  $leaderboardContainer.className = 'container leaderboard hidden';
 }

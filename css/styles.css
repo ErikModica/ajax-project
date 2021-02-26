@@ -172,7 +172,6 @@ li {
 .column-lb-stats {
   font-size: 32px;
   font-weight: bold;
-
   border-radius: 10px;
   background: linear-gradient(to left bottom,
     rgba(255, 255, 255, 0.3),
@@ -181,4 +180,20 @@ li {
   border-style: none;
   padding: 2px;
   width: 250px;
+}
+
+.view-lb, .view-home {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 7px;
+  background: linear-gradient(to left bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.7)
+  );
+  border-style: none;
+  padding: 5px;
 }
