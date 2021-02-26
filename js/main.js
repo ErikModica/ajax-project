@@ -52,6 +52,7 @@ function countDown() {
   if (time < 0) {
     clearInterval(intervalID);
     $timer.textContent = 'YOU SUCK!'
+    $quizContainer.className = 'container quiz hidden';
   }
 }
 
