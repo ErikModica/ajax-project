@@ -55,7 +55,7 @@ function startQuiz() {
 function countDown5Second() {
   imgSeconds--;
   $fiveSecondTimer.textContent = imgSeconds;
-  if (imgSeconds <= 0) {
+  if (imgSeconds < 0) {
     $timer.textContent = time + ':00';
     time = time - 1;
     intervalIDUserTimer = setInterval(countDownQuiz, 1000);
@@ -63,8 +63,10 @@ function countDown5Second() {
     $fiveSecondTimer.className = 'five-second-timer hidden'
     $answerBox.className = 'answer input';
     $skipButton.className = 'button-skip';
+    $pokemonImg.className = 'pokemon-img';
+    $timer.className = 'timer';
     clearInterval(intervalIDFiveSecondTimer);
-    imgSeconds = 5;
+    // imgSeconds = 5;
   }
 }
 
@@ -75,7 +77,7 @@ function submitQuiz() {
       scores.quizType.default.oneMin.push(userScore);
       break;
     case 5:
-      scores.quizType.default.twoMin.push(userScore);
+      scores.quizType.default.fiveMin.push(userScore);
       break;
     case 10:
       scores.quizType.default.tenMin.push(userScore);
@@ -90,7 +92,22 @@ function submitQuiz() {
 
   $quizContainer.className = 'container quiz hidden';
   $leaderboardContainer.className = 'container leaderboard';
+  $pokemonImg.className = 'pokemon-img hidden';
+  $fiveSecondTimer.className = 'five-second-timer';
+  $timer.className = 'timer hidden';
+  $fiveSecondTimer.textContent = 5;
 
+  time = null;
+  timePicked = null;
+  randomIDList = shuffle(1, 3);
+  currentID = 0;
+  rightAnswer = false;
+  pokemonName = null;
+  userScore = 0;
+  intervalIDUserTimer = null;
+  intervalIDFiveSecondTimer = null;
+  seconds = 59;
+  imgSeconds = 5;
 }
 
 function countDownQuiz() {
@@ -106,6 +123,7 @@ function countDownQuiz() {
   seconds--;
   if (time < 0) {
     clearInterval(intervalIDUserTimer);
+    time = null;
     submitQuiz();
   }
 }
@@ -117,13 +135,15 @@ function getPokemon() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
 
+    if (xhr.status !== 200 && userScore !== randomIDList.length) {
+      console.log('INVALID POKEMON ID')
+    }
+
     if (userScore === randomIDList.length) {
+      clearInterval(intervalIDUserTimer);
       submitQuiz();
     }
 
-    if (xhr.status !== 200 && userScore !== randomIDList.length) {
-    console.log('INVALID POKEMON ID')
-    }
 
     $pokemonImg.setAttribute('src', xhr.response.sprites.front_default);
 
@@ -186,3 +206,10 @@ function showHome() {
   $homeContainer.className = 'container home';
   $leaderboardContainer.className = 'container leaderboard hidden';
 }
+
+
+
+window.addEventListener('beforeunload', function (event) {
+  var scoresJSON = JSON.stringify(scores);
+  localStorage.setItem('scores', scoresJSON);
+});
