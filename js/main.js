@@ -25,7 +25,7 @@ $timeChoice.addEventListener('submit', getTime);
 function getTime(event) {
   event.preventDefault();
   time = parseInt($timeChoice.elements.time.value);
-  if (Object.is(time, NaN)) {
+  if (isNaN(time)) {
     $timeChoice.elements.time.value = null;
     $timeChoice.elements.time.placeholder = 'ENTER A NUMBER';
   } else {
@@ -48,6 +48,7 @@ function countDown5Second() {
     $answerBox.className = 'answer input';
     $skipButton.className = 'button-skip';
     clearInterval(intervalIDFiveSecondTimer);
+    imgSeconds = 5;
   }
 }
 
@@ -134,5 +135,6 @@ function shuffle(min, max) {
 function skipPokemon() {
   var switchID = randomIDList.splice(currentID, 1);
   randomIDList.push(switchID[0]);
+  $answerBox.value = null;
   getPokemon();
 }
