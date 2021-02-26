@@ -32,3 +32,8 @@
 .row-timer {
   padding: 0px;
 }
+
+.column-lb-stats {
+  display: flex;
+  justify-content: center;
+}
