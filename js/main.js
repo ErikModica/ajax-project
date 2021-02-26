@@ -2,6 +2,7 @@ var rightAnswer = false;
 var currentID = 0;
 var pokemonName = null;
 var randomIDList = shuffle(1, 10);
+var userScore = 0;
 var intervalIDUserTimer = null;
 var intervalIDFiveSecondTimer = null;
 var time = null;
@@ -21,7 +22,6 @@ var $goButton = document.querySelector('.button-start');
 var $viewLBButton = document.querySelector('.view-lb');
 var $viewHomeButton = document.querySelector('.view-home');
 
-$answerBox.addEventListener('keydown', getNextPokemon);
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
 $dropboxHead.addEventListener('click', showChoices);
@@ -112,20 +112,14 @@ function correctPokemon(event) {
   console.log(pokemonName);
 
   if (guess === pokemonName) {
-    rightAnswer = true;
-    $answerBox.className = 'answer input right';
+    userScore++;
+    console.log(userScore);
+    currentID++;
+    getPokemon();
+    event.target.value = null;
   }
 }
 
-function getNextPokemon(event) {
-  if (rightAnswer && event.key === 'Enter') {
-    currentID++;
-    getPokemon();
-    rightAnswer = false;
-    event.target.value = null;
-    $answerBox.className = 'answer input';
-  }
-}
 
 function shuffle(min, max) {
   var array = [];

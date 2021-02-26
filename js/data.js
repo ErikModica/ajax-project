@@ -9,4 +9,4 @@ var scores = {
       twentyMin: []
     }
   }
-}
+};

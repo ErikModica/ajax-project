@@ -113,11 +113,6 @@ option {
   margin-left: 1.5rem;
 }
 
-.right {
-  color: limegreen;
-  font-weight: bold;
-}
-
 .hidden {
   display: none;
 }
