@@ -2,9 +2,11 @@ var rightAnswer = false;
 var currentID = 0;
 var pokemonName = null;
 var randomIDList = shuffle(1, 10);
-var intervalID = null;
+var intervalIDUserTimer = null;
+var intervalIDFiveSecondTimer = null;
 var time = null;
 var seconds = 59;
+var imgSeconds = 5;
 var $pokemonImg = document.querySelector('.pokemon-img');
 var $answerBox = document.querySelector('.answer');
 var $skipButton = document.querySelector('.button-skip');
@@ -12,8 +14,8 @@ var $timeChoice = document.querySelector('.time-form');
 var $homeContainer = document.querySelector('.home');
 var $quizContainer = document.querySelector('.quiz')
 var $timer = document.querySelector('.timer');
+var $fiveSecondTimer = document.querySelector('.five-second-timer');
 
-addEventListener('load', getPokemon);
 $answerBox.addEventListener('keydown', getNextPokemon);
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
@@ -30,15 +32,24 @@ function getTime(event) {
     $homeContainer.className = 'container home hidden';
     $quizContainer.className = 'container quiz';
 
-
-    $timer.textContent = time + ':00';
-    time = time - 1;
-
-    intervalID = setInterval(countDown, 1000);
+    intervalIDFiveSecondTimer = setInterval(countDown5Second, 1000);
   }
 }
 
-function countDown() {
+function countDown5Second() {
+  imgSeconds--;
+  $fiveSecondTimer.textContent = imgSeconds;
+  if (imgSeconds <= 0) {
+    $timer.textContent = time + ':00';
+    time = time - 1;
+    intervalIDUserTimer = setInterval(countDownQuiz, 1000);
+    getPokemon();
+    $fiveSecondTimer.className = 'five-second-timer hidden'
+    clearInterval(intervalIDFiveSecondTimer);
+  }
+}
+
+function countDownQuiz() {
   if (seconds < 0) {
     time--
     seconds = 59;
@@ -50,7 +61,7 @@ function countDown() {
   }
   seconds--;
   if (time < 0) {
-    clearInterval(intervalID);
+    clearInterval(intervalIDUserTimer);
     $timer.textContent = 'YOU SUCK!'
     $quizContainer.className = 'container quiz hidden';
   }
@@ -86,7 +97,7 @@ function correctPokemon(event) {
 
   if (guess === pokemonName) {
     rightAnswer = true;
-    $answerBox.className = 'answer-input right';
+    $answerBox.className = 'answer input right';
   }
 }
 
@@ -96,7 +107,7 @@ function getNextPokemon(event) {
     getPokemon();
     rightAnswer = false;
     event.target.value = null;
-    $answerBox.className = 'answer-input';
+    $answerBox.className = 'answer input';
   }
 }
 

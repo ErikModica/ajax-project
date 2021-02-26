@@ -27,16 +27,6 @@
       <div class="row">
         <div class="column-choose-time">
           <form class="time-form">
-            <!-- <select name="time">
-              <option value="">Select a time..</option>
-              <option value="60">1:00</option>
-              <option value="120">2:00</option>
-              <option value="180">3:00</option>
-              <option value="240">4:00</option>
-              <option value="300">5:00</option>
-              <option value="600">10:00</option>
-              <option value="unlimited">unlimited</option>
-            </select> -->
             <input class="time input" name="time" autocomplete="off" maxlength="2" placeholder="Enter time(min)..">
             <input class="button-submit" type="submit">
           </form>
@@ -56,14 +46,15 @@
           <h1 class="timer"></h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row row-timer">
         <div class="column-img">
-          <img class="pokemon-img" src="https://www.pinpng.com/pngs/m/8-82850_poke-ball-png-pokeball-png-transparent-png.png">
+          <h1 class="five-second-timer">5</h1>
+          <img class="pokemon-img" src="">
         </div>
       </div>
       <div class="row">
         <div class="column-answer">
-          <input spellcheck="false" class="answer input" name="user-answer" placeholder="Enter guess here...">
+          <input spellcheck="false" autocomplete="off" class="answer input" name="user-answer" placeholder="Enter guess here...">
           <button class="button-skip">SKIP</button>
         </div>
       </div>

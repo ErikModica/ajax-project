@@ -73,6 +73,11 @@ option {
   border-radius: 15px;
 }
 
+.five-second-timer {
+  padding: 0rem 7rem;
+  font-size: 100px;
+}
+
 .input {
   width: 60%;
   height: 35px;
