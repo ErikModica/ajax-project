@@ -2,29 +2,58 @@ var rightAnswer = false;
 var currentID = 0;
 var pokemonName = null;
 var randomIDList = shuffle(1, 10);
+var intervalID = null;
+var time = null;
+var seconds = 59;
 var $pokemonImg = document.querySelector('.pokemon-img');
-var $answerBox = document.querySelector('.answer-input');
+var $answerBox = document.querySelector('.answer');
 var $skipButton = document.querySelector('.button-skip');
 var $timeChoice = document.querySelector('.time-form');
 var $homeContainer = document.querySelector('.home');
 var $quizContainer = document.querySelector('.quiz')
+var $timer = document.querySelector('.timer');
 
 addEventListener('load', getPokemon);
 $answerBox.addEventListener('keydown', getNextPokemon);
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
+$timeChoice.addEventListener('submit', getTime);
 
-$timeChoice.addEventListener('submit', function(event) {
+
+function getTime(event) {
   event.preventDefault();
-  console.log('seikai');
-  $homeContainer.className = 'container home hidden';
-  $quizContainer.className = 'container quiz';
-})
+  time = parseInt($timeChoice.elements.time.value);
+  if (Object.is(time, NaN)) {
+    $timeChoice.elements.time.value = null;
+    $timeChoice.elements.time.placeholder = 'ENTER A NUMBER';
+  } else {
+    $homeContainer.className = 'container home hidden';
+    $quizContainer.className = 'container quiz';
 
 
+    $timer.textContent = time + ':00';
+    time = time - 1;
 
+    intervalID = setInterval(countDown, 1000);
+  }
+}
 
-
+function countDown() {
+  if (seconds < 0) {
+    time--
+    seconds = 59;
+  }
+  if (seconds < 10 && seconds >= 0) {
+    $timer.textContent = time + ':0' + seconds
+  } else {
+    $timer.textContent = time + ':' + seconds
+  }
+  seconds--;
+  if (time < 0) {
+    clearInterval(intervalID);
+    $timer.textContent = 'YOU SUCK!'
+  }
+}
 
 
 function getPokemon() {
