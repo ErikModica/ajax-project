@@ -18,21 +18,44 @@
 
   <main>
 
-    <div class="container">
+    <div class="container home">
       <div class="row">
-        <div class="column-ntp">
-          <h1>Name the pokémon</h1>
+        <div class="column-title">
+          <h1>Whose That Pokémon</h1>
         </div>
       </div>
       <div class="row">
+        <div class="column-choose-time">
+          <form class="time-form">
+            <input class="time input" name="time" autocomplete="off" maxlength="2" placeholder="Enter time(min)..">
+            <input class="button-submit" type="submit">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container quiz hidden">
+      <div class="row">
+        <div class="column-ntp">
+          <h1>Name the Pokémon</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-timer">
+          <h1 class="timer"></h1>
+        </div>
+      </div>
+      <div class="row row-timer">
         <div class="column-img">
-          <img class="pokemon-img" src="https://www.pinpng.com/pngs/m/8-82850_poke-ball-png-pokeball-png-transparent-png.png">
+          <h1 class="five-second-timer">5</h1>
+          <img class="pokemon-img" src=" ">
         </div>
       </div>
       <div class="row">
         <div class="column-answer">
-          <input spellcheck="false" class="answer-input" name="user-answer" placeholder="Enter guess here...">
-          <button class="button-skip">SKIP</button>
+          <input spellcheck="false" autocomplete="off" class="answer input hidden" name="user-answer" placeholder="Enter guess here...">
+          <button class="button-skip hidden">SKIP</button>
         </div>
       </div>
     </div>

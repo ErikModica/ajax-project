@@ -11,6 +11,50 @@ h1 {
   font-size: 48px;
 }
 
+.column-title {
+  background: linear-gradient(to left bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.7)
+  );
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+select {
+  width: 200px;
+  height: 35px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: linear-gradient(to left bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.7)
+  );
+  border-style: none;
+  padding: 5px;
+}
+
+option {
+  background: linear-gradient(to left bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.7)
+  );
+}
+
+.button-submit {
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: linear-gradient(to left bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.7)
+  );
+  border-style: none;
+  padding: 5px;
+  max-width: 150px;
+  margin-left: 1rem;
+}
+
 .column-ntp {
   background: linear-gradient(to left bottom,
     rgba(255, 255, 255, 0.3),
@@ -29,7 +73,12 @@ h1 {
   border-radius: 15px;
 }
 
-.answer-input {
+.five-second-timer {
+  padding: 0rem 7rem;
+  font-size: 100px;
+}
+
+.input {
   width: 60%;
   height: 35px;
   font-size: 24px;
@@ -62,4 +111,8 @@ h1 {
 .right {
   color: limegreen;
   font-weight: bold;
+}
+
+.hidden {
+  display: none;
 }

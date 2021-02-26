@@ -2,14 +2,73 @@ var rightAnswer = false;
 var currentID = 0;
 var pokemonName = null;
 var randomIDList = shuffle(1, 10);
+var intervalIDUserTimer = null;
+var intervalIDFiveSecondTimer = null;
+var time = null;
+var seconds = 59;
+var imgSeconds = 5;
 var $pokemonImg = document.querySelector('.pokemon-img');
-var $answerBox = document.querySelector('.answer-input');
+var $answerBox = document.querySelector('.answer');
 var $skipButton = document.querySelector('.button-skip');
+var $timeChoice = document.querySelector('.time-form');
+var $homeContainer = document.querySelector('.home');
+var $quizContainer = document.querySelector('.quiz');
+var $timer = document.querySelector('.timer');
+var $fiveSecondTimer = document.querySelector('.five-second-timer');
 
-addEventListener('load', getPokemon);
 $answerBox.addEventListener('keydown', getNextPokemon);
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
+$timeChoice.addEventListener('submit', getTime);
+
+
+function getTime(event) {
+  event.preventDefault();
+  time = parseInt($timeChoice.elements.time.value);
+  if (isNaN(time)) {
+    $timeChoice.elements.time.value = null;
+    $timeChoice.elements.time.placeholder = 'ENTER A NUMBER';
+  } else {
+    $homeContainer.className = 'container home hidden';
+    $quizContainer.className = 'container quiz';
+
+    intervalIDFiveSecondTimer = setInterval(countDown5Second, 1000);
+  }
+}
+
+function countDown5Second() {
+  imgSeconds--;
+  $fiveSecondTimer.textContent = imgSeconds;
+  if (imgSeconds <= 0) {
+    $timer.textContent = time + ':00';
+    time = time - 1;
+    intervalIDUserTimer = setInterval(countDownQuiz, 1000);
+    getPokemon();
+    $fiveSecondTimer.className = 'five-second-timer hidden'
+    $answerBox.className = 'answer input';
+    $skipButton.className = 'button-skip';
+    clearInterval(intervalIDFiveSecondTimer);
+    imgSeconds = 5;
+  }
+}
+
+function countDownQuiz() {
+  if (seconds < 0) {
+    time--
+    seconds = 59;
+  }
+  if (seconds < 10 && seconds >= 0) {
+    $timer.textContent = time + ':0' + seconds
+  } else {
+    $timer.textContent = time + ':' + seconds
+  }
+  seconds--;
+  if (time < 0) {
+    clearInterval(intervalIDUserTimer);
+    $quizContainer.className = 'container quiz hidden';
+  }
+}
+
 
 function getPokemon() {
   var xhr = new XMLHttpRequest();
@@ -40,7 +99,7 @@ function correctPokemon(event) {
 
   if (guess === pokemonName) {
     rightAnswer = true;
-    $answerBox.className = 'answer-input right';
+    $answerBox.className = 'answer input right';
   }
 }
 
@@ -50,7 +109,7 @@ function getNextPokemon(event) {
     getPokemon();
     rightAnswer = false;
     event.target.value = null;
-    $answerBox.className = 'answer-input';
+    $answerBox.className = 'answer input';
   }
 }
 
@@ -76,5 +135,6 @@ function shuffle(min, max) {
 function skipPokemon() {
   var switchID = randomIDList.splice(currentID, 1);
   randomIDList.push(switchID[0]);
+  $answerBox.value = null;
   getPokemon();
 }
