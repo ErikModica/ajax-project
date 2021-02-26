@@ -1,11 +1,12 @@
 var rightAnswer = false;
 var currentID = 0;
 var pokemonName = null;
-var randomIDList = shuffle(1, 10);
+var randomIDList = shuffle(1, 3);
 var userScore = 0;
 var intervalIDUserTimer = null;
 var intervalIDFiveSecondTimer = null;
 var time = null;
+var timePicked = null;
 var seconds = 59;
 var imgSeconds = 5;
 var $pokemonImg = document.querySelector('.pokemon-img');
@@ -38,6 +39,7 @@ function showChoices() {
 function timeChoice(event) {
   if (event.target.tagName === 'LI') {
     time = parseInt(event.target.value);
+    timePicked = time;
     $dropbox.className = 'dropbox hidden';
     $goButton.className = 'button-start';
   }
@@ -66,6 +68,31 @@ function countDown5Second() {
   }
 }
 
+function submitQuiz() {
+
+  switch (timePicked) {
+    case 1:
+      scores.quizType.default.oneMin.push(userScore);
+      break;
+    case 5:
+      scores.quizType.default.twoMin.push(userScore);
+      break;
+    case 10:
+      scores.quizType.default.tenMin.push(userScore);
+      break;
+    case 20:
+      scores.quizType.default.twentyMin.push(userScore);
+      break;
+    default:
+      console.log('incorrect time slot');
+  }
+  console.log(scores.quizType.default);
+
+  $quizContainer.className = 'container quiz hidden';
+  $leaderboardContainer.className = 'container leaderboard';
+
+}
+
 function countDownQuiz() {
   if (seconds < 0) {
     time--
@@ -79,7 +106,7 @@ function countDownQuiz() {
   seconds--;
   if (time < 0) {
     clearInterval(intervalIDUserTimer);
-    $quizContainer.className = 'container quiz hidden';
+    submitQuiz();
   }
 }
 
@@ -89,7 +116,12 @@ function getPokemon() {
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + randomIDList[currentID]);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    if (xhr.status !== 200) {
+
+    if (userScore === randomIDList.length) {
+      submitQuiz();
+    }
+
+    if (xhr.status !== 200 && userScore !== randomIDList.length) {
     console.log('INVALID POKEMON ID')
     }
 
@@ -108,12 +140,10 @@ function getPokemon() {
 function correctPokemon(event) {
   var guess = event.target.value;
   guess = guess.toLowerCase();
-  console.log(guess);
   console.log(pokemonName);
 
   if (guess === pokemonName) {
     userScore++;
-    console.log(userScore);
     currentID++;
     getPokemon();
     event.target.value = null;
