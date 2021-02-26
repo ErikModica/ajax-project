@@ -10,31 +10,40 @@ var imgSeconds = 5;
 var $pokemonImg = document.querySelector('.pokemon-img');
 var $answerBox = document.querySelector('.answer');
 var $skipButton = document.querySelector('.button-skip');
-var $timeChoice = document.querySelector('.time-form');
 var $homeContainer = document.querySelector('.home');
 var $quizContainer = document.querySelector('.quiz');
 var $timer = document.querySelector('.timer');
 var $fiveSecondTimer = document.querySelector('.five-second-timer');
+var $dropboxHead = document.querySelector('.dropbox-head');
+var $dropbox = document.querySelector('.dropbox');
+var $goButton = document.querySelector('.button-start');
 
 $answerBox.addEventListener('keydown', getNextPokemon);
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
-$timeChoice.addEventListener('submit', getTime);
+$dropboxHead.addEventListener('click', showChoices);
+$dropbox.addEventListener('click', timeChoice);
+$goButton.addEventListener('click', startQuiz);
 
 
-function getTime(event) {
-  event.preventDefault();
-  time = parseInt($timeChoice.elements.time.value);
-  if (isNaN(time)) {
-    $timeChoice.elements.time.value = null;
-    $timeChoice.elements.time.placeholder = 'ENTER A NUMBER';
-  } else {
-    $homeContainer.className = 'container home hidden';
-    $quizContainer.className = 'container quiz';
+function showChoices() {
+  $dropbox.className = 'dropbox';
+}
 
-    intervalIDFiveSecondTimer = setInterval(countDown5Second, 1000);
+function timeChoice(event) {
+  if (event.target.tagName === 'LI') {
+    time = parseInt(event.target.value);
+    $dropbox.className = 'dropbox hidden';
+    $goButton.className = 'button-start';
   }
 }
+
+function startQuiz() {
+  $homeContainer.className = 'container home hidden';
+  $quizContainer.className = 'container quiz';
+  intervalIDFiveSecondTimer = setInterval(countDown5Second, 1000);
+}
+
 
 function countDown5Second() {
   imgSeconds--;

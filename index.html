@@ -26,10 +26,23 @@
       </div>
       <div class="row">
         <div class="column-choose-time">
-          <form class="time-form">
+          <!-- <form class="time-form">
             <input class="time input" name="time" autocomplete="off" maxlength="2" placeholder="Enter time(min)..">
             <input class="button-submit" type="submit">
-          </form>
+          </form> -->
+
+          <div class="dropbox-head">
+            <h2>Choose the time</h2>
+          </div>
+          <ul class="dropbox hidden">
+            <li class="drop-time" value="1">1 min</li>
+            <li class="drop-time" value="5">5 min</li>
+            <li class="drop-time" value="10">10 min</li>
+            <li class="drop-time" value="20">20 min</li>
+          </ul>
+          <div class="button-start hidden">
+            <h2>GO</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -59,6 +72,7 @@
         </div>
       </div>
     </div>
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
