@@ -12,7 +12,7 @@ var $answerBox = document.querySelector('.answer');
 var $skipButton = document.querySelector('.button-skip');
 var $timeChoice = document.querySelector('.time-form');
 var $homeContainer = document.querySelector('.home');
-var $quizContainer = document.querySelector('.quiz')
+var $quizContainer = document.querySelector('.quiz');
 var $timer = document.querySelector('.timer');
 var $fiveSecondTimer = document.querySelector('.five-second-timer');
 
@@ -45,6 +45,8 @@ function countDown5Second() {
     intervalIDUserTimer = setInterval(countDownQuiz, 1000);
     getPokemon();
     $fiveSecondTimer.className = 'five-second-timer hidden'
+    $answerBox.className = 'answer input';
+    $skipButton.className = 'button-skip';
     clearInterval(intervalIDFiveSecondTimer);
   }
 }
