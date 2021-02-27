@@ -22,6 +22,10 @@ var $dropbox = document.querySelector('.dropbox');
 var $goButton = document.querySelector('.button-start');
 var $viewLBButton = document.querySelector('.view-lb');
 var $viewHomeButton = document.querySelector('.view-home');
+var $oneMinLeaderboard = document.querySelector('.one-min-lb')
+var $fiveMinLeaderboard = document.querySelector('.five-min-lb')
+var $tenMinLeaderboard = document.querySelector('.ten-min-lb')
+var $twentyMinLeaderboard = document.querySelector('.twenty-min-lb')
 
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
@@ -30,6 +34,7 @@ $dropbox.addEventListener('click', timeChoice);
 $goButton.addEventListener('click', startQuiz);
 $viewLBButton.addEventListener('click', showLeaderboard);
 $viewHomeButton.addEventListener('click', showHome);
+
 
 
 function showChoices() {
@@ -48,6 +53,10 @@ function timeChoice(event) {
 function startQuiz() {
   $homeContainer.className = 'container home hidden';
   $quizContainer.className = 'container quiz';
+  $oneMinLeaderboard.className = 'one-min-lb hidden';
+  $fiveMinLeaderboard.className = 'five-min-lb hidden';
+  $tenMinLeaderboard.className = 'ten-min-lb hidden';
+  $twentyMinLeaderboard.className = 'twenty-min-lb hidden';
   intervalIDFiveSecondTimer = setInterval(countDown5Second, 1000);
 }
 
@@ -74,15 +83,19 @@ function submitQuiz() {
   switch (timePicked) {
     case 1:
       scores.quizType.default.oneMin.push(userScore);
+      $oneMinLeaderboard.className = 'one-min-lb'
       break;
     case 5:
       scores.quizType.default.fiveMin.push(userScore);
+      $fiveMinLeaderboard.className = 'five-min-lb'
       break;
     case 10:
       scores.quizType.default.tenMin.push(userScore);
+      $tenMinLeaderboard.className = 'ten-min-lb'
       break;
     case 20:
       scores.quizType.default.twentyMin.push(userScore);
+      $twentyMinLeaderboard.className = 'twenty-min-lb'
       break;
     default:
       console.log('incorrect time slot');
@@ -94,6 +107,8 @@ function submitQuiz() {
   $pokemonImg.className = 'pokemon-img hidden';
   $fiveSecondTimer.className = 'five-second-timer';
   $timer.className = 'timer hidden';
+  $answerBox.className = 'answer input hidden';
+  $skipButton.className = 'button-skip hidden';
   $fiveSecondTimer.textContent = 5;
 
   time = null;
