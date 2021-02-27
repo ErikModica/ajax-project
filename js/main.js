@@ -66,7 +66,6 @@ function countDown5Second() {
     $pokemonImg.className = 'pokemon-img';
     $timer.className = 'timer';
     clearInterval(intervalIDFiveSecondTimer);
-    // imgSeconds = 5;
   }
 }
 
@@ -206,10 +205,3 @@ function showHome() {
   $homeContainer.className = 'container home';
   $leaderboardContainer.className = 'container leaderboard hidden';
 }
-
-
-
-window.addEventListener('beforeunload', function (event) {
-  var scoresJSON = JSON.stringify(scores);
-  localStorage.setItem('scores', scoresJSON);
-});
