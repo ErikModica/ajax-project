@@ -1,7 +1,8 @@
+var pokemonAmount = 2;
 var rightAnswer = false;
 var currentID = 0;
 var pokemonName = null;
-var randomIDList = shuffle(1, 3);
+var randomIDList = shuffle(1, pokemonAmount);
 var userScore = 0;
 var intervalIDUserTimer = null;
 var intervalIDFiveSecondTimer = null;
@@ -22,10 +23,14 @@ var $dropbox = document.querySelector('.dropbox');
 var $goButton = document.querySelector('.button-start');
 var $viewLBButton = document.querySelector('.view-lb');
 var $viewHomeButton = document.querySelector('.view-home');
-var $oneMinLeaderboard = document.querySelector('.one-min-lb')
-var $fiveMinLeaderboard = document.querySelector('.five-min-lb')
-var $tenMinLeaderboard = document.querySelector('.ten-min-lb')
-var $twentyMinLeaderboard = document.querySelector('.twenty-min-lb')
+var $oneMinLeaderboard = document.querySelector('.one-min-lb');
+var $fiveMinLeaderboard = document.querySelector('.five-min-lb');
+var $tenMinLeaderboard = document.querySelector('.ten-min-lb');
+var $twentyMinLeaderboard = document.querySelector('.twenty-min-lb');
+var $oneMinLBDataList = $oneMinLeaderboard.querySelectorAll('td');
+var $fiveMinLBDataList = $fiveMinLeaderboard.querySelectorAll('td');
+var $tenMinLBDataList = $tenMinLeaderboard.querySelectorAll('td');
+var $twentyMinLBDataList = $twentyMinLeaderboard.querySelectorAll('td');
 
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
@@ -35,6 +40,31 @@ $goButton.addEventListener('click', startQuiz);
 $viewLBButton.addEventListener('click', showLeaderboard);
 $viewHomeButton.addEventListener('click', showHome);
 
+addEventListener('load', loadScores);
+
+
+function loadScores() {
+  for (var i = 0; i < $oneMinLBDataList.length; i++) {
+    if (scores.quizType.default.oneMin[i] !== undefined) {
+      $oneMinLBDataList[i].textContent = scores.quizType.default.oneMin[i] + '/' + pokemonAmount;
+    }
+  }
+  for (var i = 0; i < $fiveMinLBDataList.length; i++) {
+    if (scores.quizType.default.fiveMin[i] !== undefined) {
+      $fiveMinLBDataList[i].textContent = scores.quizType.default.fiveMin[i] + '/' + pokemonAmount;
+    }
+  }
+  for (var i = 0; i < $tenMinLBDataList.length; i++) {
+    if (scores.quizType.default.tenMin[i] !== undefined) {
+      $tenMinLBDataList[i].textContent = scores.quizType.default.tenMin[i] + '/' + pokemonAmount;
+    }
+  }
+  for (var i = 0; i < $twentyMinLBDataList.length; i++) {
+    if (scores.quizType.default.twentyMin[i] !== undefined) {
+      $twentyMinLBDataList[i].textContent = scores.quizType.default.twentyMin[i] + '/' + pokemonAmount;
+    }
+  }
+}
 
 
 function showChoices() {
@@ -59,7 +89,6 @@ function startQuiz() {
   $twentyMinLeaderboard.className = 'twenty-min-lb hidden';
   intervalIDFiveSecondTimer = setInterval(countDown5Second, 1000);
 }
-
 
 function countDown5Second() {
   imgSeconds--;
@@ -113,7 +142,7 @@ function submitQuiz() {
 
   time = null;
   timePicked = null;
-  randomIDList = shuffle(1, 3);
+  randomIDList = shuffle(1, pokemonAmount);
   currentID = 0;
   rightAnswer = false;
   pokemonName = null;
@@ -122,6 +151,7 @@ function submitQuiz() {
   intervalIDFiveSecondTimer = null;
   seconds = 59;
   imgSeconds = 5;
+  loadScores();
 }
 
 function countDownQuiz() {
@@ -141,7 +171,6 @@ function countDownQuiz() {
     submitQuiz();
   }
 }
-
 
 function getPokemon() {
   var xhr = new XMLHttpRequest();
@@ -184,7 +213,6 @@ function correctPokemon(event) {
   }
 }
 
-
 function shuffle(min, max) {
   var array = [];
   for (min; min <= max; min++) {
@@ -214,6 +242,7 @@ function skipPokemon() {
 function showLeaderboard() {
   $homeContainer.className = 'container home hidden';
   $leaderboardContainer.className = 'container leaderboard';
+  $oneMinLeaderboard.className = 'one-min-lb';
 }
 
 function showHome() {
