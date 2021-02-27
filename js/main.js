@@ -1,4 +1,4 @@
-var pokemonAmount = 2;
+var pokemonAmount = 151;
 var rightAnswer = false;
 var currentID = 0;
 var pokemonName = null;
@@ -39,29 +39,41 @@ $dropbox.addEventListener('click', timeChoice);
 $goButton.addEventListener('click', startQuiz);
 $viewLBButton.addEventListener('click', showLeaderboard);
 $viewHomeButton.addEventListener('click', showHome);
-
 addEventListener('load', loadScores);
 
 
+function sortScores(array) {
+
+  var sortedArray = array.sort(function(a, b) {
+    return b - a;
+  });
+  return sortedArray;
+}
+
+
 function loadScores() {
+  var oneMinScores = sortScores(scores.quizType.default.oneMin);
+  var fiveMinScores = sortScores(scores.quizType.default.fiveMin);
+  var tenMinScores = sortScores(scores.quizType.default.tenMin);
+  var twentyMinScores = sortScores(scores.quizType.default.twentyMin);
   for (var i = 0; i < $oneMinLBDataList.length; i++) {
-    if (scores.quizType.default.oneMin[i] !== undefined) {
-      $oneMinLBDataList[i].textContent = scores.quizType.default.oneMin[i] + '/' + pokemonAmount;
+    if (oneMinScores[i] !== undefined) {
+      $oneMinLBDataList[i].textContent = oneMinScores[i] + '/' + pokemonAmount;
     }
   }
   for (var i = 0; i < $fiveMinLBDataList.length; i++) {
-    if (scores.quizType.default.fiveMin[i] !== undefined) {
-      $fiveMinLBDataList[i].textContent = scores.quizType.default.fiveMin[i] + '/' + pokemonAmount;
+    if (fiveMinScores[i] !== undefined) {
+      $fiveMinLBDataList[i].textContent = fiveMinScores[i] + '/' + pokemonAmount;
     }
   }
   for (var i = 0; i < $tenMinLBDataList.length; i++) {
-    if (scores.quizType.default.tenMin[i] !== undefined) {
-      $tenMinLBDataList[i].textContent = scores.quizType.default.tenMin[i] + '/' + pokemonAmount;
+    if (tenMinScores[i] !== undefined) {
+      $tenMinLBDataList[i].textContent = tenMinScores[i] + '/' + pokemonAmount;
     }
   }
   for (var i = 0; i < $twentyMinLBDataList.length; i++) {
-    if (scores.quizType.default.twentyMin[i] !== undefined) {
-      $twentyMinLBDataList[i].textContent = scores.quizType.default.twentyMin[i] + '/' + pokemonAmount;
+    if (twentyMinScores[i] !== undefined) {
+      $twentyMinLBDataList[i].textContent = twentyMinScores[i] + '/' + pokemonAmount;
     }
   }
 }
@@ -139,6 +151,8 @@ function submitQuiz() {
   $answerBox.className = 'answer input hidden';
   $skipButton.className = 'button-skip hidden';
   $fiveSecondTimer.textContent = 5;
+  $answerBox.value = null;
+  $pokemonImg.setAttribute('src', null);
 
   time = null;
   timePicked = null;
