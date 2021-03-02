@@ -87,6 +87,7 @@ function timeChoice(event) {
   if (event.target.tagName === 'LI') {
     time = parseInt(event.target.value);
     timePicked = time;
+    $dropboxHead.textContent = time + ' minutes';
     $dropbox.className = 'dropbox hidden';
     $goButton.className = 'button-start';
   }
@@ -153,6 +154,7 @@ function submitQuiz() {
   $fiveSecondTimer.textContent = 5;
   $answerBox.value = null;
   $pokemonImg.setAttribute('src', null);
+  $dropboxHead.textContent = 'Choose the time';
 
   time = null;
   timePicked = null;
