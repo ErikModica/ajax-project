@@ -110,7 +110,7 @@ function countDown5Second() {
   if (imgSeconds < 0) {
     $timer.textContent = time + ':00';
     time = time - 1;
-    intervalIDUserTimer = setInterval(countDownQuiz, 10);
+    intervalIDUserTimer = setInterval(countDownQuiz, 1000);
     getPokemon();
     $fiveSecondTimer.className = 'five-second-timer hidden'
     $answerBox.className = 'answer input box-style';
