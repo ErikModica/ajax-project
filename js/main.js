@@ -23,6 +23,7 @@ var $dropbox = document.querySelector('.dropbox');
 var $goButton = document.querySelector('.button-start');
 var $viewLBButton = document.querySelector('.view-lb');
 var $viewHomeButton = document.querySelector('.view-home');
+var $scoreTracker = document.querySelector('.score-tracker');
 var $oneMinLeaderboard = document.querySelector('.one-min-lb');
 var $fiveMinLeaderboard = document.querySelector('.five-min-lb');
 var $tenMinLeaderboard = document.querySelector('.ten-min-lb');
@@ -109,13 +110,15 @@ function countDown5Second() {
   if (imgSeconds < 0) {
     $timer.textContent = time + ':00';
     time = time - 1;
-    intervalIDUserTimer = setInterval(countDownQuiz, 1000);
+    intervalIDUserTimer = setInterval(countDownQuiz, 10);
     getPokemon();
     $fiveSecondTimer.className = 'five-second-timer hidden'
     $answerBox.className = 'answer input box-style';
     $skipButton.className = 'button-skip box-style';
     $pokemonImg.className = 'pokemon-img';
     $timer.className = 'timer';
+    $scoreTracker.className = 'score-tracker';
+    $scoreTracker.textContent = 0 + '/' + pokemonAmount;
     clearInterval(intervalIDFiveSecondTimer);
   }
 }
@@ -156,6 +159,8 @@ function submitQuiz() {
   $answerBox.value = null;
   $pokemonImg.setAttribute('src', null);
   $dropboxHead.textContent = 'Choose the time';
+  $scoreTracker.textContent = 0;
+  $scoreTracker.className = 'score-tracker hidden';
 
   time = null;
   timePicked = null;
@@ -227,6 +232,7 @@ function correctPokemon(event) {
     currentID++;
     getPokemon();
     event.target.value = null;
+    $scoreTracker.textContent = userScore + '/' + pokemonAmount;
   }
 }
 
@@ -265,4 +271,8 @@ function showLeaderboard() {
 function showHome() {
   $homeContainer.className = 'container home';
   $leaderboardContainer.className = 'container leaderboard hidden';
+  $oneMinLeaderboard.className = 'one-min-lb hidden';
+  $fiveMinLeaderboard.className = 'five-min-lb hidden';
+  $tenMinLeaderboard.className = 'ten-min-lb hidden';
+  $twentyMinLeaderboard.className = 'twenty-min-lb hidden';
 }
