@@ -80,7 +80,7 @@ function loadScores() {
 
 
 function showChoices() {
-  $dropbox.className = 'dropbox';
+  $dropbox.className = 'dropbox box-style';
 }
 
 function timeChoice(event) {
@@ -88,8 +88,8 @@ function timeChoice(event) {
     time = parseInt(event.target.value);
     timePicked = time;
     $dropboxHead.textContent = time + ' minutes';
-    $dropbox.className = 'dropbox hidden';
-    $goButton.className = 'button-start';
+    $dropbox.className = 'dropbox box-style hidden';
+    $goButton.className = 'button-start box-style';
   }
 }
 
@@ -112,8 +112,8 @@ function countDown5Second() {
     intervalIDUserTimer = setInterval(countDownQuiz, 1000);
     getPokemon();
     $fiveSecondTimer.className = 'five-second-timer hidden'
-    $answerBox.className = 'answer input';
-    $skipButton.className = 'button-skip';
+    $answerBox.className = 'answer input box-style';
+    $skipButton.className = 'button-skip box-style';
     $pokemonImg.className = 'pokemon-img';
     $timer.className = 'timer';
     clearInterval(intervalIDFiveSecondTimer);
@@ -149,8 +149,9 @@ function submitQuiz() {
   $pokemonImg.className = 'pokemon-img hidden';
   $fiveSecondTimer.className = 'five-second-timer';
   $timer.className = 'timer hidden';
-  $answerBox.className = 'answer input hidden';
-  $skipButton.className = 'button-skip hidden';
+  $answerBox.className = 'answer input box-style hidden';
+  $skipButton.className = 'button-skip box-style hidden';
+  $goButton.className = 'button-start box-style hidden';
   $fiveSecondTimer.textContent = 5;
   $answerBox.value = null;
   $pokemonImg.setAttribute('src', null);
