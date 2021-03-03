@@ -5,11 +5,6 @@
   padding: 1rem;
 }
 
-.column-ntp {
-  flex-basis: 90%;
-  max-width: 800px;
-}
-
 .img-box {
   display: flex;
   justify-content: center;
@@ -32,11 +27,6 @@
 
 .row-timer {
   padding-top: 0rem;
-}
-
-.column-lb-stats {
-  display: flex;
-  justify-content: center;
 }
 
 .score-timer-box {

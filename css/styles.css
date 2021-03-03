@@ -20,21 +20,12 @@ h2 {
     rgba(255, 255, 255, 0.7)
   );
   border: 5px solid black;
-  padding: 1rem;
-}
-
-.app-title {
-  border-radius: 8px;
-}
-
-.column-ntp {
-  border-radius: 15px;
-  padding: .4rem;
+  border-radius: 10px;
+  padding: .5rem;
 }
 
 .img-box {
   padding: 1rem;
-  border-radius: 15px;
 }
 
 .pixel-pikachu {
@@ -51,14 +42,12 @@ h2 {
 .input {
   width: 60%;
   font-size: 36px;
-  border-radius: 10px;
   max-width: 400px;
 }
 
 .button-skip {
   font-size: 32px;
   font-weight: bold;
-  border-radius: 10px;
   margin-left: 1.5rem;
 }
 
@@ -66,12 +55,10 @@ h2 {
   display: none;
 }
 
-
 .dropbox-head {
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  border-radius: 10px;
   width: 300px;
 }
 
@@ -96,14 +83,12 @@ li {
   font-size: 72px;
   font-weight: bold;
   text-align: center;
-  border-radius: 10px;
   padding: .2rem 1rem;
 }
 
-.column-lb-stats {
+.table-lb-box {
   font-size: 32px;
   font-weight: bold;
-  border-radius: 10px;
   width: 250px;
 }
 
@@ -114,7 +99,6 @@ li {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  border-radius: 7px;
   z-index: 1;
 }
 
