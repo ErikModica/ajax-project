@@ -8,10 +8,9 @@
 .img-box {
   display: flex;
   justify-content: center;
-  flex-basis: 70%;
+  flex-basis: 95%;
   min-width: 200px;
-  min-height: 290px;
-  max-width: 600px;
+  max-width: 450px;
   margin-top: 0;
 }
 
@@ -21,7 +20,8 @@
 
 .answer-field {
   display: flex;
-  flex-basis: 90%;
+  flex-basis: 100%;
+  max-width: 500px;
   justify-content: center;
 }
 
@@ -32,13 +32,18 @@
 .score-timer-box {
   display: flex;
   justify-content: space-between;
-  flex-basis: 60%;
+  flex-basis: 85%;
   min-width: 200px;
-  max-width: 600px;
+  max-width: 450px;
   margin-bottom: 0;
   margin-top: 0;
 }
 
 .row-score {
   padding: 0rem;
+}
+
+.table-lb-box {
+  width: 70%;
+  max-width: 300px;
 }

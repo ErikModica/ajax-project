@@ -36,11 +36,11 @@ h2 {
 }
 
 .five-second-timer {
-  font-size: 250px;
+  font-size: 350px;
 }
 
 .input {
-  width: 60%;
+  width: 80%;
   font-size: 36px;
   max-width: 400px;
 }
@@ -86,10 +86,14 @@ li {
   padding: .2rem 1rem;
 }
 
+th {
+  padding: .5rem 0rem;
+  font-size: 36px;
+}
+
 .table-lb-box {
   font-size: 32px;
   font-weight: bold;
-  width: 250px;
 }
 
 .view-lb, .view-home {

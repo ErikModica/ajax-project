@@ -216,7 +216,6 @@ function getPokemon() {
     if (pokemonName === 'nidoran-f' || pokemonName === 'nidoran-m') {
       pokemonName = 'nidoran';
     }
-    console.log(pokemonName);
 
   });
   xhr.send();
@@ -225,7 +224,6 @@ function getPokemon() {
 function correctPokemon(event) {
   var guess = event.target.value;
   guess = guess.toLowerCase();
-  console.log(pokemonName);
 
   if (guess === pokemonName) {
     userScore++;
