@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,57 +11,220 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <header>
-
-  </header>
-
 
   <main>
 
     <div class="container home">
       <div class="row">
-        <div class="column-title">
-          <h1>Whose That Pokémon</h1>
+        <h1 class="app-title box-style">Who's That Pokémon?</h1>
+      </div>
+      <div class="row">
+        <div>
+          <div class="dropbox-head box-style">
+            <h2>Choose the time</h2>
+          </div>
+          <ul class="dropbox box-style hidden">
+            <li class="drop-time" value="1">1 minute</li>
+            <li class="drop-time" value="5">5 minutes</li>
+            <li class="drop-time" value="10">10 minutes</li>
+            <li class="drop-time" value="20">20 minutes</li>
+          </ul>
         </div>
       </div>
       <div class="row">
-        <div class="column-choose-time">
-          <form class="time-form">
-            <input class="time input" name="time" autocomplete="off" maxlength="2" placeholder="Enter time(min)..">
-            <input class="button-submit" type="submit">
-          </form>
-        </div>
+        <a class="button-start box-style hidden">START</a>
+      </div>
+      <div class="row">
+        <img class="pixel-pikachu" src="images/pixel-pikachu.png" alt="pixel pikachu">
+        <a class="view-lb box-style">View Leaderboards</a>
       </div>
     </div>
+
 
 
     <div class="container quiz hidden">
       <div class="row">
-        <div class="column-ntp">
-          <h1>Name the Pokémon</h1>
-        </div>
+        <!-- <div class="column-ntp box-style"> -->
+          <h1 class="box-style">Name the Pokémon</h1>
+        <!-- </div> -->
       </div>
-      <div class="row">
-        <div class="column-timer">
+      <div class="row row-score">
+        <div class="score-timer-box">
+          <h1 class="score-tracker hidden">0</h1>
           <h1 class="timer"></h1>
         </div>
       </div>
       <div class="row row-timer">
-        <div class="column-img">
+        <div class="img-box box-style">
           <h1 class="five-second-timer">5</h1>
-          <img class="pokemon-img" src=" ">
+          <img class="pokemon-img hidden" src=" ">
         </div>
       </div>
       <div class="row">
-        <div class="column-answer">
-          <input spellcheck="false" autocomplete="off" class="answer input hidden" name="user-answer" placeholder="Enter guess here...">
-          <button class="button-skip hidden">SKIP</button>
+        <div class="answer-field">
+          <input spellcheck="false" autocomplete="off" class="answer input box-style hidden" name="user-answer"
+            placeholder="Enter guess..">
+          <a class="button-skip box-style hidden">SKIP</a>
         </div>
       </div>
     </div>
+
+    <div class="container leaderboard hidden">
+      <div class="row">
+        <h1>LEADERBOARD</h1>
+      </div>
+      <div class="row">
+        <div class="table-lb-box box-style">
+          <table class="one-min-lb hidden">
+            <tr>
+              <th>1 MINUTE HIGHSCORES</th>
+            </tr>
+            <tr>
+              <td class="first">--</td>
+            </tr>
+            <tr>
+              <td class="second">--</td>
+            </tr>
+            <tr>
+              <td class="third">--</td>
+            </tr>
+            <tr>
+              <td class="fourth">--</td>
+            </tr>
+            <tr>
+              <td class="fifth">--</td>
+            </tr>
+            <tr>
+              <td class="sixth">--</td>
+            </tr>
+            <tr>
+              <td class="seventh">--</td>
+            </tr>
+            <tr>
+              <td class="eigth">--</td>
+            </tr>
+            <tr>
+              <td class="ninth">--</td>
+            </tr>
+            <tr>
+              <td class="tenth">--</td>
+            </tr>
+          </table>
+          <table class="five-min-lb hidden">
+            <tr>
+              <th>5 MINUTE HIGHSCORES</th>
+            </tr>
+            <tr>
+              <td class="first">--</td>
+            </tr>
+            <tr>
+              <td class="second">--</td>
+            </tr>
+            <tr>
+              <td class="third">--</td>
+            </tr>
+            <tr>
+              <td class="fourth">--</td>
+            </tr>
+            <tr>
+              <td class="fifth">--</td>
+            </tr>
+            <tr>
+              <td class="sixth">--</td>
+            </tr>
+            <tr>
+              <td class="seventh">--</td>
+            </tr>
+            <tr>
+              <td class="eigth">--</td>
+            </tr>
+            <tr>
+              <td class="ninth">--</td>
+            </tr>
+            <tr>
+              <td class="tenth">--</td>
+            </tr>
+          </table>
+          <table class="ten-min-lb hidden">
+            <tr>
+              <th>10 MINUTE HIGHSCORES</th>
+            </tr>
+            <tr>
+              <td class="first">--</td>
+            </tr>
+            <tr>
+              <td class="second">--</td>
+            </tr>
+            <tr>
+              <td class="third">--</td>
+            </tr>
+            <tr>
+              <td class="fourth">--</td>
+            </tr>
+            <tr>
+              <td class="fifth">--</td>
+            </tr>
+            <tr>
+              <td class="sixth">--</td>
+            </tr>
+            <tr>
+              <td class="seventh">--</td>
+            </tr>
+            <tr>
+              <td class="eigth">--</td>
+            </tr>
+            <tr>
+              <td class="ninth">--</td>
+            </tr>
+            <tr>
+              <td class="tenth">--</td>
+            </tr>
+          </table>
+          <table class="twenty-min-lb hidden">
+            <tr>
+              <th>20 MINUTE HIGHSCORES</th>
+            </tr>
+            <tr>
+              <td class="first">--</td>
+            </tr>
+            <tr>
+              <td class="second">--</td>
+            </tr>
+            <tr>
+              <td class="third">--</td>
+            </tr>
+            <tr>
+              <td class="fourth">--</td>
+            </tr>
+            <tr>
+              <td class="fifth">--</td>
+            </tr>
+            <tr>
+              <td class="sixth">--</td>
+            </tr>
+            <tr>
+              <td class="seventh">--</td>
+            </tr>
+            <tr>
+              <td class="eigth">--</td>
+            </tr>
+            <tr>
+              <td class="ninth">--</td>
+            </tr>
+            <tr>
+              <td class="tenth">--</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <a class="view-home box-style">Home</a>
+    </div>
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

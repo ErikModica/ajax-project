@@ -1,118 +1,108 @@
 main {
   min-height: 100vh;
-  background: linear-gradient(to right top,
-    rgb(255, 96, 96),
-    rgb(255, 170, 170)
-  );
+  background-color: rgb(177,201,139);
 }
 
 h1 {
   text-align: center;
   font-size: 48px;
+  margin: 0;
 }
 
-.column-title {
+h2 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.box-style {
   background: linear-gradient(to left bottom,
     rgba(255, 255, 255, 0.3),
     rgba(255, 255, 255, 0.7)
   );
-  border-radius: 15px;
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: .5rem;
+}
+
+.img-box {
   padding: 1rem;
 }
 
-select {
+.pixel-pikachu {
+  position: fixed;
+  bottom: -12px;
+  left: 0px;
   width: 200px;
-  height: 35px;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 10px;
-  background: linear-gradient(to left bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.7)
-  );
-  border-style: none;
-  padding: 5px;
-}
-
-option {
-  background: linear-gradient(to left bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.7)
-  );
-}
-
-.button-submit {
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 10px;
-  background: linear-gradient(to left bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.7)
-  );
-  border-style: none;
-  padding: 5px;
-  max-width: 150px;
-  margin-left: 1rem;
-}
-
-.column-ntp {
-  background: linear-gradient(to left bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.7)
-  );
-  border-radius: 15px;
-  padding: .4rem;
-}
-
-.column-img {
-  background: linear-gradient(to left bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.7)
-  );
-  padding: 1rem;
-  border-radius: 15px;
 }
 
 .five-second-timer {
-  padding: 0rem 7rem;
-  font-size: 100px;
+  font-size: 250px;
 }
 
 .input {
   width: 60%;
-  height: 35px;
-  font-size: 24px;
-  border-radius: 10px;
-  background: linear-gradient(to left bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.7)
-  );
-  border-style: none;
-  padding: 5px;
+  font-size: 36px;
   max-width: 400px;
 }
 
 .button-skip {
-  width: 20%;
-  height: 35px;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
-  border-radius: 10px;
-  background: linear-gradient(to left bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.7)
-  );
-  border-style: none;
-  padding: 5px;
-  max-width: 150px;
   margin-left: 1.5rem;
-}
-
-.right {
-  color: limegreen;
-  font-weight: bold;
 }
 
 .hidden {
   display: none;
+}
+
+.dropbox-head {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  width: 300px;
+}
+
+.dropbox {
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 0px 0px 10px 10px;
+  padding-left: 5px;
+  width: 280px;
+  margin: 0 auto;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  border-top: none;
+}
+
+li {
+  font-size: 28px;
+  list-style: none;
+}
+
+.button-start {
+  font-size: 72px;
+  font-weight: bold;
+  text-align: center;
+  padding: .2rem 1rem;
+}
+
+.table-lb-box {
+  font-size: 32px;
+  font-weight: bold;
+  width: 250px;
+}
+
+.view-lb, .view-home {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1;
+}
+
+.score-timer-box {
+  border-bottom: none;
+  border-radius: 10px 10px 0px 0px;
 }
