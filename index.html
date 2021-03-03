@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +11,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <main>
 
     <div class="container home">
       <div class="row">
-        <div class="column-title box-style">
-          <h1>Who's That Pokémon?</h1>
-        </div>
+        <h1 class="app-title box-style">Who's That Pokémon?</h1>
       </div>
       <div class="row">
-        <div class="column-choose-time">
+        <div>
           <div class="dropbox-head box-style">
             <h2>Choose the time</h2>
           </div>
@@ -34,13 +34,18 @@
         </div>
       </div>
       <div class="row">
-        <div class="column-start-button">
-          <a class="button-start box-style hidden">START</a>
+        <a class="button-start box-style hidden">START</a>
+      </div>
+      <div class="row">
+        <div class="column-half">
+          <img class="pixel-pikachu" src="images/pixel-pikachu.png" alt="pixel pikachu">
+        </div>
+        <div class="column-half">
+          <a class="view-lb box-style">View Leaderboards</a>
         </div>
       </div>
-      <button class="view-lb box-style">View Leaderboards</button>
-      <img class="pixel-pikachu" src="images/pixel-pikachu.png" alt="pixel pikachu">
     </div>
+
 
 
     <div class="container quiz hidden">
@@ -49,18 +54,23 @@
           <h1>Name the Pokémon</h1>
         </div>
       </div>
-      <div class="row row-timer">
-        <div class="column-img box-style">
-          <h1 class="timer"></h1>
+      <div class="row row-score">
+        <div class="score-timer-box">
           <h1 class="score-tracker hidden">0</h1>
+          <h1 class="timer"></h1>
+        </div>
+      </div>
+      <div class="row row-timer">
+        <div class="img-box box-style">
           <h1 class="five-second-timer">5</h1>
           <img class="pokemon-img hidden" src=" ">
         </div>
       </div>
       <div class="row">
-        <div class="column-answer">
-          <input spellcheck="false" autocomplete="off" class="answer input box-style hidden" name="user-answer" placeholder="Enter guess..">
-          <button class="button-skip box-style hidden">SKIP</button>
+        <div class="answer-field">
+          <input spellcheck="false" autocomplete="off" class="answer input box-style hidden" name="user-answer"
+            placeholder="Enter guess..">
+          <a class="button-skip box-style hidden">SKIP</a>
         </div>
       </div>
     </div>
@@ -215,11 +225,12 @@
           </table>
         </div>
       </div>
-      <button class="view-home box-style">Home</button>
+      <a class="view-home box-style">Home</a>
     </div>
 
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
