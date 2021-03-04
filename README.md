@@ -18,6 +18,7 @@ Select a time limit and test your skills! https://erikmodica.github.io/ajax-proj
 * User can view the highest scores of the selected quiz once the time limit is over/quiz is completed.
 
 **Preview**
+
 ![kqhCvhl](https://user-images.githubusercontent.com/76715055/109896177-5bd1dd00-7c45-11eb-8fac-014fa878fce9.gif)
 
 **Planned Additions**
