@@ -6,7 +6,7 @@ https://erikmodica.github.io/ajax-project/
 **Feature List**
 * Allows user to pick their desired time limit.
 * Displays random assortment of Pokémon for user.
-* Reads user input, and on correct input incriments score and goes to the next Pokémon.
+* Reads user input, and on correct input increments score and goes to the next Pokémon.
 * Showcases the highest scores of the selected quiz once the time limit is over/quiz is completed.
 
 **Planned Additions**
@@ -17,5 +17,5 @@ https://erikmodica.github.io/ajax-project/
 **What I Learned**
 * Solidified knowledge with API's and how they work.
 * Documentation and organization are very important for debugging.
-* Taking more time on plannig **WILL** save time in the coding process.
+* Taking more time on planning **WILL** save time in the coding process.
 * A bulk of new CSS properties and HTML attributes.
