@@ -14,6 +14,10 @@ h2 {
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 .box-style {
   background-color: rgba(255, 255, 255, 0.4);
   border: 5px solid black;
@@ -21,35 +25,12 @@ h2 {
   padding: .5rem;
 }
 
-.img-box {
-  padding: 1rem;
-}
+/* HOME PAGE */
 
-.pixel-pikachu {
-  position: fixed;
-  bottom: -12px;
-  left: 0px;
-  width: 200px;
-}
 
-.five-second-timer {
-  font-size: 350px;
-}
 
-.input {
-  width: 80%;
-  font-size: 36px;
-  max-width: 400px;
-}
-
-.button-skip {
-  font-size: 32px;
-  font-weight: bold;
-  margin-left: 1.5rem;
-}
-
-.hidden {
-  display: none;
+.app-title {
+  font-size: 64px
 }
 
 .dropbox-head {
@@ -71,9 +52,32 @@ h2 {
   border-top: none;
 }
 
+a, .dropbox-head {
+  transition: background-color .5s, color .5s;
+  box-shadow: 2.5px 2.5px 5px rgb(78, 78, 78);
+  user-select: none;
+}
+
+a:hover, .dropbox-head:hover{
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
 li {
   font-size: 28px;
   list-style: none;
+  transition: font-size .1s;
+}
+
+li:hover {
+  cursor: pointer;
+  color: rgb(148, 147, 147);
+  font-size: 32px;
+}
+
+a:active {
+  margin-top: 3px;
 }
 
 .button-start {
@@ -82,6 +86,60 @@ li {
   text-align: center;
   padding: .2rem 1rem;
 }
+
+.pixel-pikachu {
+  position: fixed;
+  bottom: -12px;
+  left: 0px;
+  width: 200px;
+}
+
+
+/* QUIZ PAGE */
+
+.five-second-timer {
+  font-size: 350px;
+}
+
+.score-timer-box {
+  border-bottom: none;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.img-box {
+  padding: 1rem;
+}
+
+.pokeball-loader {
+  flex-basis: 50px;
+  height: 50px;
+  align-self: center;
+  animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.input {
+  width: 80%;
+  font-size: 36px;
+  max-width: 400px;
+}
+
+.button-skip {
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 1.5rem;
+}
+
+
+/* LEADERBOARD PAGE */
 
 th {
   padding: .5rem 0rem;
@@ -101,48 +159,4 @@ th {
   font-weight: bold;
   text-align: center;
   z-index: 1;
-}
-
-.score-timer-box {
-  border-bottom: none;
-  border-radius: 10px 10px 0px 0px;
-}
-
-.pokeball-loader {
-  flex-basis: 50px;
-  height: 50px;
-  align-self: center;
-  animation: rotation 1s infinite linear;
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
-
-a, .dropbox-head {
-  transition: background-color .5s, color .5s;
-  box-shadow: 2.5px 2.5px 5px rgb(78, 78, 78);
-  user-select: none;
-
-}
-
-a:hover, .dropbox-head:hover{
-  cursor: pointer;
-  background-color: rgb(0, 0, 0);
-  color: white;
-}
-
-li:hover {
-  cursor: pointer;
-  color: rgb(148, 147, 147);
-  font-size: 32px;
-}
-
-a:active {
-  margin-top: 3px;
 }

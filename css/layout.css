@@ -5,6 +5,27 @@
   padding: 1rem;
 }
 
+
+/* QUIZ PAGE */
+
+.row-score {
+  padding: 0rem;
+}
+
+.score-timer-box {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 85%;
+  min-width: 200px;
+  max-width: 450px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.row-timer {
+  padding-top: 0rem;
+}
+
 .img-box {
   display: flex;
   justify-content: center;
@@ -26,23 +47,8 @@
   justify-content: center;
 }
 
-.row-timer {
-  padding-top: 0rem;
-}
 
-.score-timer-box {
-  display: flex;
-  justify-content: space-between;
-  flex-basis: 85%;
-  min-width: 200px;
-  max-width: 450px;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
-.row-score {
-  padding: 0rem;
-}
+/* LEADERBOARD PAGE */
 
 .table-lb-box {
   width: 70%;

@@ -279,7 +279,8 @@ function skipPokemon() {
   var switchID = randomIDList.splice(currentID, 1);
   randomIDList.push(switchID[0]);
   $answerBox.value = null;
-  $pokemonImg.className = 'pokemon-img hidden'
+  $pokemonImg.className = 'pokemon-img hidden';
+  $answerBox.focus();
   getPokemon();
 }
 
