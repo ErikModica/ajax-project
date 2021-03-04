@@ -81,7 +81,11 @@ function loadScores() {
 
 //displays the selection of times available
 function showChoices() {
-  $dropbox.className = 'dropbox box-style';
+  if ($dropbox.className === 'dropbox box-style hidden') {
+    $dropbox.className = 'dropbox box-style';
+  } else {
+    $dropbox.className = 'dropbox box-style hidden';
+  }
 }
 
 //event delegator for the time selection, and also asigns the selected time to the time variable for future use

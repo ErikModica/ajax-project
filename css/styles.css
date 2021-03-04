@@ -139,6 +139,8 @@ a:hover, .dropbox-head:hover{
 
 li:hover {
   cursor: pointer;
+  color: rgb(148, 147, 147);
+  font-size: 32px;
 }
 
 a:active {
