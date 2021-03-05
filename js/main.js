@@ -25,14 +25,9 @@ var $viewLBButton = document.querySelector('.view-lb');
 var $viewHomeButton = document.querySelector('.view-home');
 var $scoreTracker = document.querySelector('.score-tracker');
 var $pokeballSpinner = document.querySelector('.pokeball-loader');
-var $oneMinLeaderboard = document.querySelector('.one-min-lb');
-var $fiveMinLeaderboard = document.querySelector('.five-min-lb');
-var $tenMinLeaderboard = document.querySelector('.ten-min-lb');
-var $twentyMinLeaderboard = document.querySelector('.twenty-min-lb');
-var $oneMinLBDataList = $oneMinLeaderboard.querySelectorAll('td');
-var $fiveMinLBDataList = $fiveMinLeaderboard.querySelectorAll('td');
-var $tenMinLBDataList = $tenMinLeaderboard.querySelectorAll('td');
-var $twentyMinLBDataList = $twentyMinLeaderboard.querySelectorAll('td');
+var $leaderboardTabContainer = document.querySelector('.lb-tab-container');
+var $leaderboardTabList = document.querySelectorAll('.lb-tab');
+var $leaderboardSlotList = document.querySelectorAll('.lb-item');
 
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
@@ -41,7 +36,7 @@ $dropbox.addEventListener('click', timeChoice);
 $goButton.addEventListener('click', startQuiz);
 $viewLBButton.addEventListener('click', showLeaderboard);
 $viewHomeButton.addEventListener('click', showHome);
-addEventListener('load', loadScores);
+$leaderboardTabContainer.addEventListener('click', chooseLeaderboard);
 
 //takes in an array of numbers and sorts them from highest to lowest
 function sortScores(array) {
@@ -49,34 +44,6 @@ function sortScores(array) {
     return b - a;
   });
   return sortedArray;
-}
-
-//loads the scores to their appropriate leaderboard
-function loadScores() {
-  var oneMinScores = sortScores(scores.quizType.default.oneMin);
-  var fiveMinScores = sortScores(scores.quizType.default.fiveMin);
-  var tenMinScores = sortScores(scores.quizType.default.tenMin);
-  var twentyMinScores = sortScores(scores.quizType.default.twentyMin);
-  for (var i = 0; i < $oneMinLBDataList.length; i++) {
-    if (oneMinScores[i] !== undefined) {
-      $oneMinLBDataList[i].textContent = oneMinScores[i] + '/' + pokemonAmount;
-    }
-  }
-  for (var i = 0; i < $fiveMinLBDataList.length; i++) {
-    if (fiveMinScores[i] !== undefined) {
-      $fiveMinLBDataList[i].textContent = fiveMinScores[i] + '/' + pokemonAmount;
-    }
-  }
-  for (var i = 0; i < $tenMinLBDataList.length; i++) {
-    if (tenMinScores[i] !== undefined) {
-      $tenMinLBDataList[i].textContent = tenMinScores[i] + '/' + pokemonAmount;
-    }
-  }
-  for (var i = 0; i < $twentyMinLBDataList.length; i++) {
-    if (twentyMinScores[i] !== undefined) {
-      $twentyMinLBDataList[i].textContent = twentyMinScores[i] + '/' + pokemonAmount;
-    }
-  }
 }
 
 //displays the selection of times available
@@ -103,10 +70,6 @@ function timeChoice(event) {
 function startQuiz() {
   $homeContainer.className = 'container home hidden';
   $quizContainer.className = 'container quiz';
-  $oneMinLeaderboard.className = 'one-min-lb hidden';
-  $fiveMinLeaderboard.className = 'five-min-lb hidden';
-  $tenMinLeaderboard.className = 'ten-min-lb hidden';
-  $twentyMinLeaderboard.className = 'twenty-min-lb hidden';
   intervalIDFiveSecondTimer = setInterval(countDown5Second, 1000);
 }
 
@@ -118,7 +81,7 @@ function countDown5Second() {
   if (imgSeconds < 0) {
     $timer.textContent = time + ':00';
     time = time - 1;
-    intervalIDUserTimer = setInterval(countDownQuiz, 1000);
+    intervalIDUserTimer = setInterval(countDownQuiz, 10);
     getPokemon();
     $fiveSecondTimer.className = 'five-second-timer hidden'
     $answerBox.className = 'answer input box-style';
@@ -210,19 +173,15 @@ function submitQuiz() {
   switch (timePicked) {
     case 1:
       scores.quizType.default.oneMin.push(userScore);
-      $oneMinLeaderboard.className = 'one-min-lb'
       break;
     case 5:
       scores.quizType.default.fiveMin.push(userScore);
-      $fiveMinLeaderboard.className = 'five-min-lb'
       break;
     case 10:
       scores.quizType.default.tenMin.push(userScore);
-      $tenMinLeaderboard.className = 'ten-min-lb'
       break;
     case 20:
       scores.quizType.default.twentyMin.push(userScore);
-      $twentyMinLeaderboard.className = 'twenty-min-lb'
       break;
     default:
       console.log('incorrect time slot');
@@ -244,7 +203,6 @@ function submitQuiz() {
   $scoreTracker.className = 'score-tracker hidden';
 
   time = null;
-  timePicked = null;
   randomIDList = shuffle(1, pokemonAmount);
   currentID = 0;
   rightAnswer = false;
@@ -254,7 +212,8 @@ function submitQuiz() {
   intervalIDFiveSecondTimer = null;
   seconds = 59;
   imgSeconds = 5;
-  loadScores();
+  interpretLeaderboard(timePicked);
+  timePicked = null;
 }
 
 //interprets whether or not the text inputed by the user is the same as the name of the pokemon at question.
@@ -288,15 +247,78 @@ function skipPokemon() {
 function showLeaderboard() {
   $homeContainer.className = 'container home hidden';
   $leaderboardContainer.className = 'container leaderboard';
-  $oneMinLeaderboard.className = 'one-min-lb';
+  interpretLeaderboard(1);
+}
+
+//when the a number(1, 5, 10, or 20) depicting the time of the quiz is passed as an
+//  argument, this function deactivates all current active leaderboard stats and
+//  displays the correct leaderboard.
+function interpretLeaderboard(time) {
+  for (var i = 0; i < $leaderboardTabList.length; i++) {
+    if ($leaderboardTabList[i].className === 'lb-tab lb-active') {
+      $leaderboardTabList[i].className = 'lb-tab';
+    }
+  }
+  switch (time) {
+    case 1:
+      $leaderboardTabList[0].className = 'lb-tab lb-active';
+      var oneMinScores = sortScores(scores.quizType.default.oneMin);
+      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+        if (oneMinScores[i] !== undefined) {
+          $leaderboardSlotList[i].textContent = oneMinScores[i] + '/' + pokemonAmount;
+        } else {
+          $leaderboardSlotList[i].textContent = '--';
+        }
+      }
+      break;
+    case 5:
+      $leaderboardTabList[1].className = 'lb-tab lb-active';
+      var fiveMinScores = sortScores(scores.quizType.default.fiveMin);
+      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+        if (fiveMinScores[i] !== undefined) {
+          $leaderboardSlotList[i].textContent = fiveMinScores[i] + '/' + pokemonAmount;
+        } else {
+          $leaderboardSlotList[i].textContent = '--';
+        }
+      }
+      break;
+    case 10:
+      $leaderboardTabList[2].className = 'lb-tab lb-active';
+      var tenMinScores = sortScores(scores.quizType.default.tenMin);
+      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+        if (tenMinScores[i] !== undefined) {
+          $leaderboardSlotList[i].textContent = tenMinScores[i] + '/' + pokemonAmount;
+        } else {
+          $leaderboardSlotList[i].textContent = '--';
+        }
+      }
+      break;
+    case 20:
+      $leaderboardTabList[3].className = 'lb-tab lb-active';
+      var twentyMinScores = sortScores(scores.quizType.default.twentyMin);
+      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+        if (twentyMinScores[i] !== undefined) {
+          $leaderboardSlotList[i].textContent = twentyMinScores[i] + '/' + pokemonAmount;
+        } else {
+          $leaderboardSlotList[i].textContent = '--';
+        }
+      }
+      break;
+    default:
+      console.log('time slot unavailable');
+  }
+}
+
+//allows the user to switch between leaderboards
+function chooseLeaderboard(event) {
+  var lbTime = parseInt(event.target.textContent);
+  if (event.target.className === 'lb-tab') {
+    interpretLeaderboard(lbTime);
+  }
 }
 
 //displays the home screen from the leaderboard page.
 function showHome() {
   $homeContainer.className = 'container home';
   $leaderboardContainer.className = 'container leaderboard hidden';
-  $oneMinLeaderboard.className = 'one-min-lb hidden';
-  $fiveMinLeaderboard.className = 'five-min-lb hidden';
-  $tenMinLeaderboard.className = 'ten-min-lb hidden';
-  $twentyMinLeaderboard.className = 'twenty-min-lb hidden';
 }

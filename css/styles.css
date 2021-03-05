@@ -64,13 +64,13 @@ a:hover, .dropbox-head:hover{
   color: white;
 }
 
-li {
+.drop-time {
   font-size: 28px;
   list-style: none;
   transition: font-size .1s;
 }
 
-li:hover {
+.drop-time:hover {
   cursor: pointer;
   color: rgb(148, 147, 147);
   font-size: 32px;
@@ -130,6 +130,7 @@ a:active {
   width: 80%;
   font-size: 36px;
   max-width: 400px;
+  outline: none;
 }
 
 .button-skip {
@@ -141,14 +142,59 @@ a:active {
 
 /* LEADERBOARD PAGE */
 
-th {
-  padding: .5rem 0rem;
-  font-size: 36px;
-}
-
-.table-lb-box {
+.lb-head {
   font-size: 32px;
   font-weight: bold;
+  text-align: center;
+  width: 300px;
+}
+
+.lb-body {
+  min-width: 250px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 0px 0px 10px 10px;
+  width: 280px;
+  margin: 0 auto;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  border-top: none;
+  position: relative;
+}
+
+.lb-item {
+  font-size: 32px;
+  border-bottom: 2px solid black;
+  list-style-position: inside;
+}
+
+.lb-item:last-child {
+  border-bottom: none;
+}
+
+.lb-tab {
+  font-size: 42px;
+  margin-bottom: .5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: font-size .3s;
+  padding: 0rem 1rem;
+}
+
+.lb-tab-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.lb-active {
+  font-size: 48px;
+  border-bottom: 5px solid rgb(148, 147, 147);
+  color: rgb(148, 147, 147);
+}
+
+.lb-tab:hover {
+  font-size: 48px;
+  color: rgb(148, 147, 147);
 }
 
 .view-lb, .view-home {

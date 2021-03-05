@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
@@ -43,7 +46,6 @@
     </div>
 
 
-
     <div class="container quiz hidden">
       <div class="row">
         <h1 class="box-style">Name the Pokémon</h1>
@@ -70,158 +72,41 @@
       </div>
     </div>
 
+
     <div class="container leaderboard hidden">
       <div class="row">
-        <h1>LEADERBOARD</h1>
+        <h1 class="box-style">LEADERBOARD</h1>
       </div>
       <div class="row">
-        <div class="table-lb-box box-style">
-          <table class="one-min-lb hidden">
-            <tr>
-              <th>1 MINUTE HIGHSCORES</th>
-            </tr>
-            <tr>
-              <td class="first">--</td>
-            </tr>
-            <tr>
-              <td class="second">--</td>
-            </tr>
-            <tr>
-              <td class="third">--</td>
-            </tr>
-            <tr>
-              <td class="fourth">--</td>
-            </tr>
-            <tr>
-              <td class="fifth">--</td>
-            </tr>
-            <tr>
-              <td class="sixth">--</td>
-            </tr>
-            <tr>
-              <td class="seventh">--</td>
-            </tr>
-            <tr>
-              <td class="eigth">--</td>
-            </tr>
-            <tr>
-              <td class="ninth">--</td>
-            </tr>
-            <tr>
-              <td class="tenth">--</td>
-            </tr>
-          </table>
-          <table class="five-min-lb hidden">
-            <tr>
-              <th>5 MINUTE HIGHSCORES</th>
-            </tr>
-            <tr>
-              <td class="first">--</td>
-            </tr>
-            <tr>
-              <td class="second">--</td>
-            </tr>
-            <tr>
-              <td class="third">--</td>
-            </tr>
-            <tr>
-              <td class="fourth">--</td>
-            </tr>
-            <tr>
-              <td class="fifth">--</td>
-            </tr>
-            <tr>
-              <td class="sixth">--</td>
-            </tr>
-            <tr>
-              <td class="seventh">--</td>
-            </tr>
-            <tr>
-              <td class="eigth">--</td>
-            </tr>
-            <tr>
-              <td class="ninth">--</td>
-            </tr>
-            <tr>
-              <td class="tenth">--</td>
-            </tr>
-          </table>
-          <table class="ten-min-lb hidden">
-            <tr>
-              <th>10 MINUTE HIGHSCORES</th>
-            </tr>
-            <tr>
-              <td class="first">--</td>
-            </tr>
-            <tr>
-              <td class="second">--</td>
-            </tr>
-            <tr>
-              <td class="third">--</td>
-            </tr>
-            <tr>
-              <td class="fourth">--</td>
-            </tr>
-            <tr>
-              <td class="fifth">--</td>
-            </tr>
-            <tr>
-              <td class="sixth">--</td>
-            </tr>
-            <tr>
-              <td class="seventh">--</td>
-            </tr>
-            <tr>
-              <td class="eigth">--</td>
-            </tr>
-            <tr>
-              <td class="ninth">--</td>
-            </tr>
-            <tr>
-              <td class="tenth">--</td>
-            </tr>
-          </table>
-          <table class="twenty-min-lb hidden">
-            <tr>
-              <th>20 MINUTE HIGHSCORES</th>
-            </tr>
-            <tr>
-              <td class="first">--</td>
-            </tr>
-            <tr>
-              <td class="second">--</td>
-            </tr>
-            <tr>
-              <td class="third">--</td>
-            </tr>
-            <tr>
-              <td class="fourth">--</td>
-            </tr>
-            <tr>
-              <td class="fifth">--</td>
-            </tr>
-            <tr>
-              <td class="sixth">--</td>
-            </tr>
-            <tr>
-              <td class="seventh">--</td>
-            </tr>
-            <tr>
-              <td class="eigth">--</td>
-            </tr>
-            <tr>
-              <td class="ninth">--</td>
-            </tr>
-            <tr>
-              <td class="tenth">--</td>
-            </tr>
-          </table>
+        <div>
+          <div class="lb-tab-container">
+            <div class="lb-tab">1</div>
+            <div class="lb-tab">5</div>
+            <div class="lb-tab">10</div>
+            <div class="lb-tab">20</div>
+          </div>
+          <div class="lb-head box-style">
+            <h2>MINUTE HIGHSCORES</h2>
+          </div>
+          <ol class="lb-body box-style">
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+            <li class="lb-item">--</li>
+          </ol>
         </div>
       </div>
       <a class="view-home box-style">Home</a>
     </div>
 
   </main>
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
