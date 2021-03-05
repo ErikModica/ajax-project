@@ -29,6 +29,8 @@ var $leaderboardTabContainer = document.querySelector('.lb-tab-container');
 var $leaderboardTabList = document.querySelectorAll('.lb-tab');
 var $leaderboardSlotList = document.querySelectorAll('.lb-item');
 
+var $pokemonImgContainer = document.querySelector('.img-box');
+
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
 $dropboxHead.addEventListener('click', showChoices);
@@ -81,7 +83,7 @@ function countDown5Second() {
   if (imgSeconds < 0) {
     $timer.textContent = time + ':00';
     time = time - 1;
-    intervalIDUserTimer = setInterval(countDownQuiz, 10);
+    intervalIDUserTimer = setInterval(countDownQuiz, 1000);
     getPokemon();
     $fiveSecondTimer.className = 'five-second-timer hidden'
     $answerBox.className = 'answer input box-style';
@@ -225,10 +227,15 @@ function correctPokemon(event) {
   if (guess === pokemonName) {
     userScore++;
     currentID++;
-    $pokemonImg.className = 'pokemon-img hidden'
+    $pokemonImg.className = 'pokemon-img hidden';
+    $pokemonImgContainer.className = 'img-box box-style correct-answer';
     getPokemon();
     event.target.value = null;
     $scoreTracker.textContent = userScore + '/' + pokemonAmount;
+
+    setTimeout(function() {
+      $pokemonImgContainer.className = 'img-box box-style';
+    }, 1000);
   }
 }
 

@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: 'VT323', monospace;
+  user-select: none;
 }
 
 body {

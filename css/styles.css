@@ -55,7 +55,6 @@ h2 {
 a, .dropbox-head {
   transition: background-color .5s, color .5s;
   box-shadow: 2.5px 2.5px 5px rgb(78, 78, 78);
-  user-select: none;
 }
 
 a:hover, .dropbox-head:hover{
@@ -109,6 +108,22 @@ a:active {
 .img-box {
   padding: 1rem;
 }
+
+.correct-answer {
+  animation: flash ease-in 1s running;
+}
+
+@keyframes flash {
+  from {
+    box-shadow: 0rem 0rem 30px lime;
+    border-color: rgb(94, 255, 0);
+  }
+  to {
+    box-shadow: 0rem 0rem 0px lime;
+    border-color: rgb(0, 39, 8);
+  }
+}
+
 
 .pokeball-loader {
   flex-basis: 50px;
