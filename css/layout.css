@@ -8,6 +8,37 @@
 
 /* QUIZ PAGE */
 
+/* ABORT QUIZ MODAL */
+
+.abort-modal-container {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(1, 1, 1, 0.767);
+  z-index: 2;
+}
+
+.abort-quiz-modal {
+  width: 70%;
+  height: 200px;
+  margin: 40vh auto;
+  text-align: center;
+}
+
+.abort-quiz-modal > p {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.abort-quiz-modal > a {
+  margin: 1rem;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* END OF MODAL */
+
 .row-score {
   padding: 0rem;
 }
@@ -46,7 +77,6 @@
   max-width: 500px;
   justify-content: center;
 }
-
 
 /* LEADERBOARD PAGE */
 

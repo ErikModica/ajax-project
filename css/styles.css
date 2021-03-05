@@ -1,6 +1,7 @@
 main {
   min-height: 100vh;
   background-color: rgb(177,201,139);
+  z-index: -1;
 }
 
 h1 {
@@ -91,6 +92,7 @@ a:active {
   bottom: -12px;
   left: 0px;
   width: 200px;
+  z-index: 0;
 }
 
 
@@ -109,6 +111,10 @@ a:active {
   padding: 1rem;
 }
 
+/* .img-box > img {
+  filter: contrast(0%) brightness(0%);
+} */
+
 .correct-answer {
   animation: flash ease-in 1s running;
 }
@@ -123,7 +129,6 @@ a:active {
     border-color: rgb(0, 39, 8);
   }
 }
-
 
 .pokeball-loader {
   flex-basis: 50px;
@@ -153,6 +158,13 @@ a:active {
   font-weight: bold;
   margin-left: 1.5rem;
 }
+
+/* ABORT QUIZ MODAL */
+
+.abort-quiz-modal {
+  background-color: rgba(255, 255, 255, 0.781);
+}
+
 
 
 /* LEADERBOARD PAGE */
@@ -212,12 +224,13 @@ a:active {
   color: rgb(148, 147, 147);
 }
 
-.view-lb, .view-home {
+/* BOTTOM RIGHT BUTTONS */
+
+.view-lb, .view-home, .button-abort-quiz {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  z-index: 1;
 }

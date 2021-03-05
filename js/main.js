@@ -329,3 +329,12 @@ function showHome() {
   $homeContainer.className = 'container home';
   $leaderboardContainer.className = 'container leaderboard hidden';
 }
+
+
+var $abortQuizButton = document.querySelector('.button-abort-quiz');
+var $abortModalContainer = document.querySelector('.abort-modal-container')
+$abortQuizButton.addEventListener('click', openAbortModal);
+
+function openAbortModal() {
+  $abortModalContainer.className = 'abort-modal-container'
+}
