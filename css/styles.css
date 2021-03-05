@@ -1,18 +1,14 @@
 main {
-  min-height: 100vh;
   background-color: rgb(177,201,139);
-  z-index: -1;
 }
 
 h1 {
   text-align: center;
   font-size: 48px;
-  margin: 0;
 }
 
 h2 {
   font-size: 36px;
-  margin: 0;
 }
 
 .hidden {
@@ -28,8 +24,6 @@ h2 {
 
 /* HOME PAGE */
 
-
-
 .app-title {
   font-size: 64px
 }
@@ -38,7 +32,6 @@ h2 {
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  width: 300px;
 }
 
 .dropbox {
@@ -46,8 +39,6 @@ h2 {
   font-weight: bold;
   border-radius: 0px 0px 10px 10px;
   padding-left: 5px;
-  width: 280px;
-  margin: 0 auto;
   padding-top: 0rem;
   padding-bottom: 0rem;
   border-top: none;
@@ -87,16 +78,26 @@ a:active {
   padding: .2rem 1rem;
 }
 
-.pixel-pikachu {
-  position: fixed;
-  bottom: -12px;
-  left: 0px;
-  width: 200px;
-  z-index: 0;
+/* QUIZ PAGE */
+
+/* ABORT QUIZ MODAL */
+
+.abort-quiz-modal {
+  background-color: rgba(255, 255, 255, 0.781);
 }
 
+.abort-quiz-modal > p {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
 
-/* QUIZ PAGE */
+.abort-quiz-modal > a {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* END OF MODAL */
 
 .five-second-timer {
   font-size: 350px;
@@ -159,34 +160,19 @@ a:active {
   margin-left: 1.5rem;
 }
 
-/* ABORT QUIZ MODAL */
-
-.abort-quiz-modal {
-  background-color: rgba(255, 255, 255, 0.781);
-}
-
-
-
 /* LEADERBOARD PAGE */
 
 .lb-head {
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  width: 300px;
 }
 
 .lb-body {
-  min-width: 250px;
   font-size: 24px;
   font-weight: bold;
   border-radius: 0px 0px 10px 10px;
-  width: 280px;
-  margin: 0 auto;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
   border-top: none;
-  position: relative;
 }
 
 .lb-item {
@@ -201,16 +187,9 @@ a:active {
 
 .lb-tab {
   font-size: 42px;
-  margin-bottom: .5rem;
   cursor: pointer;
   font-weight: bold;
   transition: font-size .3s;
-  padding: 0rem 1rem;
-}
-
-.lb-tab-container {
-  display: flex;
-  justify-content: space-around;
 }
 
 .lb-active {
@@ -227,17 +206,6 @@ a:active {
 /* BOTTOM RIGHT BUTTONS */
 
 .view-lb, .view-home, .button-abort-quiz {
-  position: fixed;
-  bottom: 1rem;
   font-size: 24px;
   font-weight: bold;
-  text-align: center;
-}
-
-.view-lb, .view-home {
-  right: 1rem;
-}
-
-.button-abort-quiz {
-  left: 1rem;
 }
