@@ -114,9 +114,9 @@ a:active {
   padding: 1rem;
 }
 
-/* .img-box > img {
+.hard-mode {
   filter: contrast(0%) brightness(0%);
-} */
+}
 
 .correct-answer {
   animation: flash ease-in 1s running;

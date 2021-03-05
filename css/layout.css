@@ -10,9 +10,7 @@ h1, h2 {
 .row {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   padding: 1rem;
-  /* max-width: 1000px; */
 }
 
 /* HOME PAGE */

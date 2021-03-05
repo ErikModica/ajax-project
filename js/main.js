@@ -11,30 +11,29 @@ var timePicked = null;
 var mode = null;
 var seconds = 59;
 var imgSeconds = 5;
-var $pokemonImg = document.querySelector('.pokemon-img');
-var $answerBox = document.querySelector('.answer');
-var $skipButton = document.querySelector('.button-skip');
 var $homeContainer = document.querySelector('.home');
-var $quizContainer = document.querySelector('.quiz');
-var $leaderboardContainer = document.querySelector('.leaderboard')
-var $timer = document.querySelector('.timer');
-var $fiveSecondTimer = document.querySelector('.five-second-timer');
 var $dropboxHeadTime = document.querySelector('.dbh-time');
 var $dropboxTime = document.querySelector('.db-time');
 var $dropboxHeadMode = document.querySelector('.dbh-mode');
 var $dropboxMode = document.querySelector('.db-mode');
 var $goButton = document.querySelector('.button-start');
+var $quizContainer = document.querySelector('.quiz');
+var $pokemonImgContainer = document.querySelector('.img-box');
+var $pokemonImg = document.querySelector('.pokemon-img');
+var $pokeballSpinner = document.querySelector('.pokeball-loader');
+var $scoreTracker = document.querySelector('.score-tracker');
+var $answerBox = document.querySelector('.answer');
+var $skipButton = document.querySelector('.button-skip');
+var $abortQuizButton = document.querySelector('.button-abort-quiz');
+var $abortModalContainer = document.querySelector('.abort-modal-container');
+var $leaderboardContainer = document.querySelector('.leaderboard')
+var $timer = document.querySelector('.timer');
+var $fiveSecondTimer = document.querySelector('.five-second-timer');
 var $viewLBButton = document.querySelector('.view-lb');
 var $viewHomeButton = document.querySelector('.view-home');
-var $scoreTracker = document.querySelector('.score-tracker');
-var $pokeballSpinner = document.querySelector('.pokeball-loader');
 var $leaderboardTabContainer = document.querySelector('.lb-tab-container');
 var $leaderboardTabList = document.querySelectorAll('.lb-tab');
 var $leaderboardSlotList = document.querySelectorAll('.lb-item');
-
-var $pokemonImgContainer = document.querySelector('.img-box');
-var $abortQuizButton = document.querySelector('.button-abort-quiz');
-var $abortModalContainer = document.querySelector('.abort-modal-container');
 
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
@@ -95,7 +94,6 @@ function timeChoice(event) {
 function modeChoice(event) {
   if (event.target.tagName === 'LI') {
     mode = event.target.textContent;
-    console.log(mode);
     $dropboxHeadMode.textContent = mode;
     $dropboxMode.className = 'db-mode dropbox box-style hidden';
 
@@ -118,6 +116,9 @@ function countDown5Second() {
   imgSeconds--;
   $fiveSecondTimer.textContent = imgSeconds;
   if (imgSeconds < 0) {
+
+
+
     $timer.textContent = time + ':00';
     time = time - 1;
     intervalIDUserTimer = setInterval(countDownQuiz, 1000);
@@ -125,7 +126,6 @@ function countDown5Second() {
     $fiveSecondTimer.className = 'five-second-timer hidden'
     $answerBox.className = 'answer input box-style';
     $skipButton.className = 'button-skip box-style';
-    $pokemonImg.className = 'pokemon-img';
     $timer.className = 'timer';
     $scoreTracker.className = 'score-tracker';
     $abortQuizButton.className = 'button-abort-quiz box-style';
@@ -148,7 +148,6 @@ function countDownQuiz() {
   seconds--;
   if (time < 0) {
     clearInterval(intervalIDUserTimer);
-    time = null;
     submitQuiz();
   }
 }
@@ -184,7 +183,7 @@ function getPokemon() {
   xhr.addEventListener('load', function () {
 
     if (xhr.status !== 200 && userScore !== randomIDList.length) {
-      console.log('INVALID POKEMON ID')
+      console.log('INVALID POKEMON ID');
     }
 
     if (userScore === randomIDList.length) {
@@ -192,8 +191,14 @@ function getPokemon() {
       submitQuiz();
     }
 
-    $pokeballSpinner.className = 'pokeball-loader hidden'
-    $pokemonImg.className = 'pokemon-img'
+    $pokeballSpinner.className = 'pokeball-loader hidden';
+
+    if (mode === 'hard') {
+      $pokemonImg.className = 'pokemon-img hard-mode';
+    } else {
+      $pokemonImg.className = 'pokemon-img';
+    }
+
     $pokemonImg.setAttribute('src', xhr.response.sprites.front_default);
 
     pokemonName = xhr.response.species.name;
@@ -389,6 +394,7 @@ function resetValues() {
   $scoreTracker.className = 'score-tracker hidden';
 
   time = null;
+  mode = null;
   randomIDList = shuffle(1, pokemonAmount);
   currentID = 0;
   rightAnswer = false;
