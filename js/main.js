@@ -8,6 +8,7 @@ var intervalIDUserTimer = null;
 var intervalIDFiveSecondTimer = null;
 var time = null;
 var timePicked = null;
+var mode = null;
 var seconds = 59;
 var imgSeconds = 5;
 var $pokemonImg = document.querySelector('.pokemon-img');
@@ -18,8 +19,10 @@ var $quizContainer = document.querySelector('.quiz');
 var $leaderboardContainer = document.querySelector('.leaderboard')
 var $timer = document.querySelector('.timer');
 var $fiveSecondTimer = document.querySelector('.five-second-timer');
-var $dropboxHead = document.querySelector('.dropbox-head');
-var $dropbox = document.querySelector('.dropbox');
+var $dropboxHeadTime = document.querySelector('.dbh-time');
+var $dropboxTime = document.querySelector('.db-time');
+var $dropboxHeadMode = document.querySelector('.dbh-mode');
+var $dropboxMode = document.querySelector('.db-mode');
 var $goButton = document.querySelector('.button-start');
 var $viewLBButton = document.querySelector('.view-lb');
 var $viewHomeButton = document.querySelector('.view-home');
@@ -30,15 +33,21 @@ var $leaderboardTabList = document.querySelectorAll('.lb-tab');
 var $leaderboardSlotList = document.querySelectorAll('.lb-item');
 
 var $pokemonImgContainer = document.querySelector('.img-box');
+var $abortQuizButton = document.querySelector('.button-abort-quiz');
+var $abortModalContainer = document.querySelector('.abort-modal-container');
 
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
-$dropboxHead.addEventListener('click', showChoices);
-$dropbox.addEventListener('click', timeChoice);
+$dropboxHeadTime.addEventListener('click', showTimeChoices);
+$dropboxHeadMode.addEventListener('click', showModeChoices);
+$dropboxTime.addEventListener('click', timeChoice);
+$dropboxMode.addEventListener('click', modeChoice);
 $goButton.addEventListener('click', startQuiz);
 $viewLBButton.addEventListener('click', showLeaderboard);
 $viewHomeButton.addEventListener('click', showHome);
 $leaderboardTabContainer.addEventListener('click', chooseLeaderboard);
+$abortQuizButton.addEventListener('click', openAbortModal);
+$abortModalContainer.addEventListener('click', abortQuiz);
 
 //takes in an array of numbers and sorts them from highest to lowest
 function sortScores(array) {
@@ -49,22 +58,50 @@ function sortScores(array) {
 }
 
 //displays the selection of times available
-function showChoices() {
-  if ($dropbox.className === 'dropbox box-style hidden') {
-    $dropbox.className = 'dropbox box-style';
+function showTimeChoices() {
+  if ($dropboxTime.className === 'db-time dropbox box-style hidden') {
+    $dropboxTime.className = 'db-time dropbox box-style';
   } else {
-    $dropbox.className = 'dropbox box-style hidden';
+    $dropboxTime.className = 'db-time dropbox box-style hidden';
   }
 }
 
-//event delegator for the time selection, and also asigns the selected time to the time variable for future use
+//displays the selection of modes available
+function showModeChoices() {
+  if ($dropboxMode.className === 'db-mode dropbox box-style hidden') {
+    $dropboxMode.className = 'db-mode dropbox box-style';
+  } else {
+    $dropboxMode.className = 'db-mode dropbox box-style hidden';
+  }
+}
+
+//asigns the selected time to the time variable for future use and allows user to
+//  start the game if both time and mode are selected.
 function timeChoice(event) {
   if (event.target.tagName === 'LI') {
     time = parseInt(event.target.value);
     timePicked = time;
-    $dropboxHead.textContent = time + ' minutes';
-    $dropbox.className = 'dropbox box-style hidden';
-    $goButton.className = 'button-start box-style';
+    $dropboxHeadTime.textContent = event.target.textContent
+    $dropboxTime.className = 'db-time dropbox box-style hidden';
+
+    if (timePicked !== null && mode !== null) {
+      $goButton.className = 'button-start box-style';
+    }
+  }
+}
+
+//asigns the selected mode to the mode variable for future use and allows user to
+//  start the game if both time and mode are selected.
+function modeChoice(event) {
+  if (event.target.tagName === 'LI') {
+    mode = event.target.textContent;
+    console.log(mode);
+    $dropboxHeadMode.textContent = mode;
+    $dropboxMode.className = 'db-mode dropbox box-style hidden';
+
+    if (timePicked !== null && mode !== null) {
+      $goButton.className = 'button-start box-style';
+    }
   }
 }
 
@@ -306,12 +343,6 @@ function showHome() {
   $leaderboardContainer.className = 'container leaderboard hidden';
 }
 
-
-var $abortQuizButton = document.querySelector('.button-abort-quiz');
-var $abortModalContainer = document.querySelector('.abort-modal-container')
-$abortQuizButton.addEventListener('click', openAbortModal);
-$abortModalContainer.addEventListener('click', abortQuiz);
-
 //opens abort quiz modal.
 function openAbortModal() {
   $abortModalContainer.className = 'abort-modal-container'
@@ -339,7 +370,6 @@ function abortQuiz(event) {
 
 }
 
-
 //when quiz is either aborted or submitted, this function resets all the values
 //  changed during the quiz and takes the user back to the home page
 function resetValues() {
@@ -354,7 +384,7 @@ function resetValues() {
   $fiveSecondTimer.textContent = 5;
   $answerBox.value = null;
   $pokemonImg.setAttribute('src', null);
-  $dropboxHead.textContent = 'Choose the time';
+  $dropboxHeadTime.textContent = 'select time limit';
   $scoreTracker.textContent = 0;
   $scoreTracker.className = 'score-tracker hidden';
 
