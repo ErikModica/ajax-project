@@ -91,6 +91,7 @@ function countDown5Second() {
     $pokemonImg.className = 'pokemon-img';
     $timer.className = 'timer';
     $scoreTracker.className = 'score-tracker';
+    $abortQuizButton.className = 'button-abort-quiz box-style';
     $scoreTracker.textContent = 0 + '/' + pokemonAmount;
     clearInterval(intervalIDFiveSecondTimer);
   }
@@ -188,34 +189,9 @@ function submitQuiz() {
     default:
       console.log('incorrect time slot');
   }
-
-  $quizContainer.className = 'container quiz hidden';
-  $leaderboardContainer.className = 'container leaderboard';
-  $pokemonImg.className = 'pokemon-img hidden';
-  $fiveSecondTimer.className = 'five-second-timer';
-  $timer.className = 'timer hidden';
-  $answerBox.className = 'answer input box-style hidden';
-  $skipButton.className = 'button-skip box-style hidden';
-  $goButton.className = 'button-start box-style hidden';
-  $fiveSecondTimer.textContent = 5;
-  $answerBox.value = null;
-  $pokemonImg.setAttribute('src', null);
-  $dropboxHead.textContent = 'Choose the time';
-  $scoreTracker.textContent = 0;
-  $scoreTracker.className = 'score-tracker hidden';
-
-  time = null;
-  randomIDList = shuffle(1, pokemonAmount);
-  currentID = 0;
-  rightAnswer = false;
-  pokemonName = null;
-  userScore = 0;
-  intervalIDUserTimer = null;
-  intervalIDFiveSecondTimer = null;
-  seconds = 59;
-  imgSeconds = 5;
   interpretLeaderboard(timePicked);
-  timePicked = null;
+  resetValues();
+  $leaderboardContainer.className = 'container leaderboard';
 }
 
 //interprets whether or not the text inputed by the user is the same as the name of the pokemon at question.
@@ -334,7 +310,63 @@ function showHome() {
 var $abortQuizButton = document.querySelector('.button-abort-quiz');
 var $abortModalContainer = document.querySelector('.abort-modal-container')
 $abortQuizButton.addEventListener('click', openAbortModal);
+$abortModalContainer.addEventListener('click', abortQuiz);
 
+//opens abort quiz modal.
 function openAbortModal() {
   $abortModalContainer.className = 'abort-modal-container'
+}
+
+//deciphers the outcome of which button the user clicks in the abort quiz modal.
+//  if the user chooses no it will hide the modal, if they choose yes it will
+//  exit out of the quiz and not save their progress. It will also run the reset
+//  values function.
+function abortQuiz(event) {
+
+  if (event.target.tagName !== 'A') {
+    return;
+  }
+
+  if (event.target.textContent === 'YES') {
+    clearInterval(intervalIDUserTimer);
+    resetValues();
+    $abortModalContainer.className = 'abort-modal-container hidden';
+    $homeContainer.className = 'container home';
+
+  } else {
+    $abortModalContainer.className = 'abort-modal-container hidden';
+  }
+
+}
+
+
+//when quiz is either aborted or submitted, this function resets all the values
+//  changed during the quiz and takes the user back to the home page
+function resetValues() {
+  $quizContainer.className = 'container quiz hidden';
+  $pokemonImg.className = 'pokemon-img hidden';
+  $fiveSecondTimer.className = 'five-second-timer';
+  $timer.className = 'timer hidden';
+  $answerBox.className = 'answer input box-style hidden';
+  $skipButton.className = 'button-skip box-style hidden';
+  $goButton.className = 'button-start box-style hidden';
+  $abortQuizButton.className = 'button-abort-quiz box-style hidden';
+  $fiveSecondTimer.textContent = 5;
+  $answerBox.value = null;
+  $pokemonImg.setAttribute('src', null);
+  $dropboxHead.textContent = 'Choose the time';
+  $scoreTracker.textContent = 0;
+  $scoreTracker.className = 'score-tracker hidden';
+
+  time = null;
+  randomIDList = shuffle(1, pokemonAmount);
+  currentID = 0;
+  rightAnswer = false;
+  pokemonName = null;
+  userScore = 0;
+  intervalIDUserTimer = null;
+  intervalIDFiveSecondTimer = null;
+  seconds = 59;
+  imgSeconds = 5;
+  timePicked = null;
 }

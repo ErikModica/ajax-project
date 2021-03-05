@@ -228,9 +228,16 @@ a:active {
 
 .view-lb, .view-home, .button-abort-quiz {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 1rem;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+}
+
+.view-lb, .view-home {
+  right: 1rem;
+}
+
+.button-abort-quiz {
+  left: 1rem;
 }

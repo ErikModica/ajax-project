@@ -19,7 +19,9 @@
 }
 
 .abort-quiz-modal {
-  width: 70%;
+  position: relative;
+  width: 65%;
+  max-width: 400px;
   height: 200px;
   margin: 40vh auto;
   text-align: center;
@@ -31,10 +33,19 @@
   padding-bottom: 1rem;
 }
 
-.abort-quiz-modal > a {
-  margin: 1rem;
+.abort-quiz-modal > a{
+  position: absolute;
   font-size: 22px;
   font-weight: bold;
+  bottom: 1rem;
+}
+
+.abort-quiz-modal > a:first-of-type {
+  left: 2rem;
+}
+
+.abort-quiz-modal > a:last-of-type {
+  right: 2rem;
 }
 
 /* END OF MODAL */
