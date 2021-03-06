@@ -390,6 +390,7 @@ function resetValues() {
   $answerBox.value = null;
   $pokemonImg.setAttribute('src', null);
   $dropboxHeadTime.textContent = 'select time limit';
+  $dropboxHeadMode.textContent = 'select mode';
   $scoreTracker.textContent = 0;
   $scoreTracker.className = 'score-tracker hidden';
 
