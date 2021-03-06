@@ -107,10 +107,15 @@ h1, h2 {
   display: flex;
   justify-content: center;
   flex-basis: 95%;
-  min-width: 200px;
+  /* min-width: 200px; */
   max-width: 450px;
   min-height: 370px;
   margin-top: 0;
+}
+
+.pokemon-img {
+  min-width: 200px;
+  max-width: 300px;
 }
 
 .img-box > img {
