@@ -85,7 +85,7 @@ a:active {
 /* ABORT QUIZ MODAL */
 
 .abort-quiz-modal {
-  background-color: rgba(255, 255, 255, 0.781);
+  background-color: rgba(255, 255, 255, 0.534);
 }
 
 .abort-quiz-modal > p {
@@ -97,6 +97,14 @@ a:active {
 .abort-quiz-modal > a {
   font-size: 22px;
   font-weight: bold;
+}
+
+.abort-quiz-modal > a:first-of-type {
+  transition: background-color 1s;
+}
+
+.abort-quiz-modal > a:first-of-type:hover {
+  background-color: rgb(167, 0, 0);
 }
 
 /* END OF MODAL */
