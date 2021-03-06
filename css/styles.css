@@ -1,17 +1,18 @@
 main {
-  min-height: 100vh;
   background-color: rgb(177,201,139);
 }
 
 h1 {
   text-align: center;
   font-size: 48px;
-  margin: 0;
 }
 
 h2 {
   font-size: 36px;
-  margin: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 .box-style {
@@ -21,59 +22,55 @@ h2 {
   padding: .5rem;
 }
 
-.img-box {
-  padding: 1rem;
-}
 
-.pixel-pikachu {
-  position: fixed;
-  bottom: -12px;
-  left: 0px;
-  width: 200px;
-}
+/* HOME PAGE */
 
-.five-second-timer {
-  font-size: 350px;
-}
-
-.input {
-  width: 80%;
-  font-size: 36px;
-  max-width: 400px;
-}
-
-.button-skip {
-  font-size: 32px;
-  font-weight: bold;
-  margin-left: 1.5rem;
-}
-
-.hidden {
-  display: none;
+.app-title {
+  font-size: 64px
 }
 
 .dropbox-head {
-  font-size: 32px;
+  position: relative;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
-  width: 300px;
 }
 
 .dropbox {
-  font-size: 24px;
   font-weight: bold;
   border-radius: 0px 0px 10px 10px;
   padding-left: 5px;
-  width: 280px;
-  margin: 0 auto;
   padding-top: 0rem;
   padding-bottom: 0rem;
   border-top: none;
 }
 
-li {
-  font-size: 28px;
+a, .dropbox-head {
+  transition: background-color .5s, color .5s;
+  box-shadow: 2.5px 2.5px 5px rgb(78, 78, 78);
+}
+
+a:hover, .dropbox-head:hover{
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.dropbox-item {
+  font-size: 24px;
   list-style: none;
+  transition: font-size .1s;
+  padding: 0 .5rem;
+}
+
+.dropbox-item:hover {
+  cursor: pointer;
+  color: rgb(148, 147, 147);
+  font-size: 32px;
+}
+
+a:active {
+  margin-top: 3px;
 }
 
 .button-start {
@@ -83,29 +80,65 @@ li {
   padding: .2rem 1rem;
 }
 
-th {
-  padding: .5rem 0rem;
-  font-size: 36px;
+/* QUIZ PAGE */
+
+/* ABORT QUIZ MODAL */
+
+.abort-quiz-modal {
+  background-color: rgba(255, 255, 255, 0.534);
 }
 
-.table-lb-box {
-  font-size: 32px;
+.abort-quiz-modal > p {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.abort-quiz-modal > a {
+  font-size: 22px;
   font-weight: bold;
 }
 
-.view-lb, .view-home {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  z-index: 1;
+.abort-quiz-modal > a:first-of-type {
+  transition: background-color 1s;
+}
+
+.abort-quiz-modal > a:first-of-type:hover {
+  background-color: rgb(167, 0, 0);
+}
+
+/* END OF MODAL */
+
+.five-second-timer {
+  font-size: 350px;
 }
 
 .score-timer-box {
   border-bottom: none;
   border-radius: 10px 10px 0px 0px;
+}
+
+.img-box {
+  padding: 1rem;
+}
+
+.hard-mode {
+  filter: contrast(0%) brightness(0%);
+}
+
+.correct-answer {
+  animation: flash ease-in 1s running;
+}
+
+@keyframes flash {
+  from {
+    box-shadow: 0rem 0rem 30px lime;
+    border-color: rgb(94, 255, 0);
+  }
+  to {
+    box-shadow: 0rem 0rem 0px lime;
+    border-color: rgb(0, 39, 8);
+  }
 }
 
 .pokeball-loader {
@@ -124,23 +157,65 @@ th {
   }
 }
 
-a, .dropbox-head {
-  transition: background-color .5s, color .5s;
-  box-shadow: 2.5px 2.5px 5px rgb(78, 78, 78);
-  user-select: none;
-
+.input {
+  width: 80%;
+  font-size: 36px;
+  max-width: 400px;
+  outline: none;
 }
 
-a:hover, .dropbox-head:hover{
+.button-skip {
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 1.5rem;
+}
+
+/* LEADERBOARD PAGE */
+
+.lb-head {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.lb-body {
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 0px 0px 10px 10px;
+  border-top: none;
+}
+
+.lb-item {
+  font-size: 32px;
+  border-bottom: 2px solid black;
+  list-style-position: inside;
+}
+
+.lb-item:last-child {
+  border-bottom: none;
+}
+
+.lb-tab {
+  font-size: 42px;
   cursor: pointer;
-  background-color: rgb(0, 0, 0);
-  color: white;
+  font-weight: bold;
+  transition: font-size .3s;
 }
 
-li:hover {
-  cursor: pointer;
+.lb-active {
+  font-size: 48px;
+  border-bottom: 5px solid rgb(148, 147, 147);
+  color: rgb(148, 147, 147);
 }
 
-a:active {
-  margin-top: 3px;
+.lb-tab:hover {
+  font-size: 48px;
+  color: rgb(148, 147, 147);
+}
+
+/* BOTTOM RIGHT BUTTONS */
+
+.view-lb, .view-home, .button-abort-quiz {
+  font-size: 24px;
+  font-weight: bold;
 }
