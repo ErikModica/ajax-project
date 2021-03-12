@@ -178,12 +178,14 @@ a:active {
   background-color: rgba(0, 0, 0, 0.808);
   min-height: 100vh;
   width: 100%;
+  z-index: 2;
 }
 
 .view-score-modal {
+  background-color: rgba(255, 255, 255, 0.699);
   display: flex;
   flex-wrap: wrap;
-  font-size: 32px;
+  font-size: 54px;
   justify-content: center;
   margin: 20% auto;
   width: 40%;
