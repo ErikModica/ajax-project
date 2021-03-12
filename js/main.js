@@ -1,39 +1,42 @@
-var pokemonAmount = 151;
-var rightAnswer = false;
-var currentID = 0;
-var pokemonName = null;
-var randomIDList = shuffle(1, pokemonAmount);
-var userScore = 0;
-var intervalIDUserTimer = null;
-var intervalIDFiveSecondTimer = null;
-var time = null;
-var timePicked = null;
-var mode = null;
-var seconds = 59;
-var imgSeconds = 5;
-var $homeContainer = document.querySelector('.home');
-var $dropboxHeadTime = document.querySelector('.dbh-time');
-var $dropboxTime = document.querySelector('.db-time');
-var $dropboxHeadMode = document.querySelector('.dbh-mode');
-var $dropboxMode = document.querySelector('.db-mode');
-var $goButton = document.querySelector('.button-start');
-var $quizContainer = document.querySelector('.quiz');
-var $pokemonImgContainer = document.querySelector('.img-box');
-var $pokemonImg = document.querySelector('.pokemon-img');
-var $pokeballSpinner = document.querySelector('.pokeball-loader');
-var $scoreTracker = document.querySelector('.score-tracker');
-var $answerBox = document.querySelector('.answer');
-var $skipButton = document.querySelector('.button-skip');
-var $abortQuizButton = document.querySelector('.button-abort-quiz');
-var $abortModalContainer = document.querySelector('.abort-modal-container');
-var $leaderboardContainer = document.querySelector('.leaderboard')
-var $timer = document.querySelector('.timer');
-var $fiveSecondTimer = document.querySelector('.five-second-timer');
-var $viewLBButton = document.querySelector('.view-lb');
-var $viewHomeButton = document.querySelector('.view-home');
-var $leaderboardTabContainer = document.querySelector('.lb-tab-container');
-var $leaderboardTabList = document.querySelectorAll('.lb-tab');
-var $leaderboardSlotList = document.querySelectorAll('.lb-item');
+let pokemonAmount = 151;
+let rightAnswer = false;
+let currentID = 0;
+let pokemonName = null;
+let randomIDList = shuffle(1, pokemonAmount);
+let userScore = 0;
+let intervalIDUserTimer = null;
+let intervalIDFiveSecondTimer = null;
+let time = null;
+let timePicked = null;
+let mode = null;
+let seconds = 59;
+let imgSeconds = 5;
+const $homeContainer = document.querySelector('.home');
+const $dropboxHeadTime = document.querySelector('.dbh-time');
+const $dropboxTime = document.querySelector('.db-time');
+const $dropboxHeadMode = document.querySelector('.dbh-mode');
+const $dropboxMode = document.querySelector('.db-mode');
+const $goButton = document.querySelector('.button-start');
+const $quizContainer = document.querySelector('.quiz');
+const $pokemonImgContainer = document.querySelector('.img-box');
+const $pokemonImg = document.querySelector('.pokemon-img');
+const $pokeballSpinner = document.querySelector('.pokeball-loader');
+const $scoreTracker = document.querySelector('.score-tracker');
+const $answerBox = document.querySelector('.answer');
+const $skipButton = document.querySelector('.button-skip');
+const $abortQuizButton = document.querySelector('.button-abort-quiz');
+const $abortModalContainer = document.querySelector('.abort-modal-container');
+const $leaderboardContainer = document.querySelector('.leaderboard')
+const $timer = document.querySelector('.timer');
+const $fiveSecondTimer = document.querySelector('.five-second-timer');
+const $viewLBButton = document.querySelector('.view-lb');
+const $viewHomeButton = document.querySelector('.view-home');
+const $scoreModalContainer = document.querySelector('.score-modal-container');
+const $closeScoreButton = document.querySelector('.button-close-score');
+const $userTotalScore = document.querySelector('.user-end-score');
+const $leaderboardTabContainer = document.querySelector('.lb-tab-container');
+const $leaderboardTabList = document.querySelectorAll('.lb-tab');
+const $leaderboardSlotList = document.querySelectorAll('.lb-item');
 
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
@@ -44,13 +47,14 @@ $dropboxMode.addEventListener('click', modeChoice);
 $goButton.addEventListener('click', startQuiz);
 $viewLBButton.addEventListener('click', showLeaderboard);
 $viewHomeButton.addEventListener('click', showHome);
+$closeScoreButton.addEventListener('click', closeScoreModal);
 $leaderboardTabContainer.addEventListener('click', chooseLeaderboard);
 $abortQuizButton.addEventListener('click', openAbortModal);
 $abortModalContainer.addEventListener('click', abortQuiz);
 
 //takes in an array of numbers and sorts them from highest to lowest
 function sortScores(array) {
-  var sortedArray = array.sort(function(a, b) {
+  const sortedArray = array.sort(function(a, b) {
     return b - a;
   });
   return sortedArray;
@@ -74,7 +78,7 @@ function showModeChoices() {
   }
 }
 
-//asigns the selected time to the time variable for future use and allows user to
+//asigns the selected time to the time constiable for future use and allows user to
 //  start the game if both time and mode are selected.
 function timeChoice(event) {
   if (event.target.tagName === 'LI') {
@@ -89,7 +93,7 @@ function timeChoice(event) {
   }
 }
 
-//asigns the selected mode to the mode variable for future use and allows user to
+//asigns the selected mode to the mode constiable for future use and allows user to
 //  start the game if both time and mode are selected.
 function modeChoice(event) {
   if (event.target.tagName === 'LI') {
@@ -155,13 +159,13 @@ function countDownQuiz() {
 //creates and shuffles an array with the numbers with the range of 1 to 151(all gen 1 pokemon's IDs).
 //  this is used to display a different set of pokemon everytime the user enters a new quiz.
 function shuffle(min, max) {
-  var array = [];
+  const array = [];
   for (min; min <= max; min++) {
     array.push(min);
   }
-  var i = array.length;
-  var randomVal = 0;
-  var hold;
+  let i = array.length;
+  let randomVal = 0;
+  let hold;
 
   while (i--) {
     randomVal = Math.floor(Math.random() * (i + 1));
@@ -177,7 +181,7 @@ function shuffle(min, max) {
 function getPokemon() {
   $pokeballSpinner.className = 'pokeball-loader'
 
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + randomIDList[currentID]);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
@@ -241,7 +245,7 @@ function submitQuiz() {
 //interprets whether or not the text inputed by the user is the same as the name of the pokemon at question.
 //  if correct incriments score and runs the getPokemon function.
 function correctPokemon(event) {
-  var guess = event.target.value;
+  let guess = event.target.value;
   guess = guess.toLowerCase();
 
   if (guess === pokemonName) {
@@ -262,12 +266,17 @@ function correctPokemon(event) {
 //allows the user to skip to the next pokemon with the press of a button.
 //  if the user skips a pokemon, it will be added to the end of the quiz.
 function skipPokemon() {
-  var switchID = randomIDList.splice(currentID, 1);
+  const switchID = randomIDList.splice(currentID, 1);
   randomIDList.push(switchID[0]);
   $answerBox.value = null;
   $pokemonImg.className = 'pokemon-img hidden';
   $answerBox.focus();
   getPokemon();
+}
+
+//hides the score pop up at the end of the quiz
+function closeScoreModal() {
+  $scoreModalContainer.className = 'score-modal-container hidden';
 }
 
 //displays the default leaderboard of one minute high scores.
@@ -281,7 +290,7 @@ function showLeaderboard() {
 //  argument, this function deactivates all current active leaderboard stats and
 //  displays the correct leaderboard.
 function interpretLeaderboard(time) {
-  for (var i = 0; i < $leaderboardTabList.length; i++) {
+  for (let i = 0; i < $leaderboardTabList.length; i++) {
     if ($leaderboardTabList[i].className === 'lb-tab lb-active') {
       $leaderboardTabList[i].className = 'lb-tab';
     }
@@ -289,8 +298,8 @@ function interpretLeaderboard(time) {
   switch (time) {
     case 1:
       $leaderboardTabList[0].className = 'lb-tab lb-active';
-      var oneMinScores = sortScores(scores.quizType.default.oneMin);
-      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+      const oneMinScores = sortScores(scores.quizType.default.oneMin);
+      for (let i = 0; i < $leaderboardSlotList.length; i++) {
         if (oneMinScores[i] !== undefined) {
           $leaderboardSlotList[i].textContent = oneMinScores[i] + '/' + pokemonAmount;
         } else {
@@ -300,8 +309,8 @@ function interpretLeaderboard(time) {
       break;
     case 5:
       $leaderboardTabList[1].className = 'lb-tab lb-active';
-      var fiveMinScores = sortScores(scores.quizType.default.fiveMin);
-      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+      const fiveMinScores = sortScores(scores.quizType.default.fiveMin);
+      for (let i = 0; i < $leaderboardSlotList.length; i++) {
         if (fiveMinScores[i] !== undefined) {
           $leaderboardSlotList[i].textContent = fiveMinScores[i] + '/' + pokemonAmount;
         } else {
@@ -311,8 +320,8 @@ function interpretLeaderboard(time) {
       break;
     case 10:
       $leaderboardTabList[2].className = 'lb-tab lb-active';
-      var tenMinScores = sortScores(scores.quizType.default.tenMin);
-      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+      const tenMinScores = sortScores(scores.quizType.default.tenMin);
+      for (let i = 0; i < $leaderboardSlotList.length; i++) {
         if (tenMinScores[i] !== undefined) {
           $leaderboardSlotList[i].textContent = tenMinScores[i] + '/' + pokemonAmount;
         } else {
@@ -322,8 +331,8 @@ function interpretLeaderboard(time) {
       break;
     case 20:
       $leaderboardTabList[3].className = 'lb-tab lb-active';
-      var twentyMinScores = sortScores(scores.quizType.default.twentyMin);
-      for (var i = 0; i < $leaderboardSlotList.length; i++) {
+      const twentyMinScores = sortScores(scores.quizType.default.twentyMin);
+      for (let i = 0; i < $leaderboardSlotList.length; i++) {
         if (twentyMinScores[i] !== undefined) {
           $leaderboardSlotList[i].textContent = twentyMinScores[i] + '/' + pokemonAmount;
         } else {
@@ -338,7 +347,7 @@ function interpretLeaderboard(time) {
 
 //allows the user to switch between leaderboards
 function chooseLeaderboard(event) {
-  var lbTime = parseInt(event.target.textContent);
+  let lbTime = parseInt(event.target.textContent);
   if (event.target.className === 'lb-tab') {
     interpretLeaderboard(lbTime);
   }
@@ -409,16 +418,4 @@ function resetValues() {
   seconds = 59;
   imgSeconds = 5;
   timePicked = null;
-}
-
-const $scoreModalContainer = document.querySelector('.score-modal-container');
-const $closeScoreButton = document.querySelector('.button-close-score');
-const $userTotalScore = document.querySelector('.user-end-score');
-
-$closeScoreButton.addEventListener('click', closeScoreModal);
-
-
-
-function closeScoreModal() {
-  $scoreModalContainer.className = 'score-modal-container hidden';
 }
