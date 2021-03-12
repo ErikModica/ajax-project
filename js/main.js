@@ -121,7 +121,7 @@ function countDown5Second() {
 
     $timer.textContent = time + ':00';
     time = time - 1;
-    intervalIDUserTimer = setInterval(countDownQuiz, 1000);
+    intervalIDUserTimer = setInterval(countDownQuiz, 200);
     getPokemon();
     $fiveSecondTimer.className = 'five-second-timer hidden'
     $answerBox.className = 'answer input box-style';
@@ -233,6 +233,8 @@ function submitQuiz() {
   }
   interpretLeaderboard(timePicked);
   resetValues();
+  $scoreModalContainer.className = 'score-modal-container';
+  setTimeout(closeScoreModal, 3000);
   $leaderboardContainer.className = 'container leaderboard';
 }
 
@@ -393,6 +395,7 @@ function resetValues() {
   $dropboxHeadMode.textContent = 'select mode';
   $scoreTracker.textContent = 0;
   $scoreTracker.className = 'score-tracker hidden';
+  $userTotalScore.textContent = `${userScore}/${pokemonAmount}`;
 
   time = null;
   mode = null;
@@ -406,4 +409,16 @@ function resetValues() {
   seconds = 59;
   imgSeconds = 5;
   timePicked = null;
+}
+
+const $scoreModalContainer = document.querySelector('.score-modal-container');
+const $closeScoreButton = document.querySelector('.button-close-score');
+const $userTotalScore = document.querySelector('.user-end-score');
+
+$closeScoreButton.addEventListener('click', closeScoreModal);
+
+
+
+function closeScoreModal() {
+  $scoreModalContainer.className = 'score-modal-container hidden';
 }

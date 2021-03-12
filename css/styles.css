@@ -1,3 +1,8 @@
+body, a, input {
+  font-family: 'VT323', monospace;
+  font-weight: bold;
+}
+
 main {
   background-color: rgb(177,201,139);
 }
@@ -75,7 +80,6 @@ a:active {
 
 .button-start {
   font-size: 72px;
-  font-weight: bold;
   text-align: center;
   padding: .2rem 1rem;
 }
@@ -90,13 +94,11 @@ a:active {
 
 .abort-quiz-modal > p {
   font-size: 20px;
-  font-weight: bold;
   padding-bottom: 1rem;
 }
 
 .abort-quiz-modal > a {
   font-size: 22px;
-  font-weight: bold;
 }
 
 .abort-quiz-modal > a:first-of-type {
@@ -166,21 +168,47 @@ a:active {
 
 .button-skip {
   font-size: 32px;
-  font-weight: bold;
   margin-left: 1.5rem;
+}
+
+/* SCORE DISPLAY MODAL */
+
+.score-modal-container {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.808);
+  min-height: 100vh;
+  width: 100%;
+  z-index: 2;
+}
+
+.view-score-modal {
+  background-color: rgba(255, 255, 255, 0.699);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 54px;
+  justify-content: center;
+  margin: 20% auto;
+  width: 40%;
+}
+
+.view-score-modal > div {
+  text-align: center;
+  width: 100%;
+}
+
+.view-score-modal > a {
+  margin: 0 auto;
 }
 
 /* LEADERBOARD PAGE */
 
 .lb-head {
   font-size: 32px;
-  font-weight: bold;
   text-align: center;
 }
 
 .lb-body {
   font-size: 24px;
-  font-weight: bold;
   border-radius: 0px 0px 10px 10px;
   border-top: none;
 }
@@ -198,7 +226,6 @@ a:active {
 .lb-tab {
   font-size: 42px;
   cursor: pointer;
-  font-weight: bold;
   transition: font-size .3s;
 }
 
@@ -217,5 +244,4 @@ a:active {
 
 .view-lb, .view-home, .button-abort-quiz {
   font-size: 24px;
-  font-weight: bold;
 }
