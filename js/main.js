@@ -3,6 +3,7 @@ let rightAnswer = false;
 let currentID = 0;
 let pokemonName = null;
 let randomIDList = shuffle(1, pokemonAmount);
+const correctIDList = [];
 let userScore = 0;
 let intervalIDUserTimer = null;
 let intervalIDFiveSecondTimer = null;
@@ -55,7 +56,7 @@ $abortModalContainer.addEventListener('click', abortQuiz);
 //takes in an array of numbers and sorts them from highest to lowest
 function sortScores(array) {
   const sortedArray = array.sort(function(a, b) {
-    return b - a;
+    return b.score - a.score;
   });
   return sortedArray;
 }
@@ -221,20 +222,21 @@ function submitQuiz() {
 
   switch (timePicked) {
     case 1:
-      scores.quizType.default.oneMin.push(userScore);
+      scores.quizType.default.oneMin.push({ score: userScore, correctPokemon: correctIDList });
       break;
     case 5:
-      scores.quizType.default.fiveMin.push(userScore);
+      scores.quizType.default.fiveMin.push({ score: userScore, correctPokemon: correctIDList });
       break;
     case 10:
-      scores.quizType.default.tenMin.push(userScore);
+      scores.quizType.default.tenMin.push({ score: userScore, correctPokemon: correctIDList });
       break;
     case 20:
-      scores.quizType.default.twentyMin.push(userScore);
+      scores.quizType.default.twentyMin.push({ score: userScore, correctPokemon: correctIDList });
       break;
     default:
       console.log('incorrect time slot');
   }
+  console.log(correctIDList);
   interpretLeaderboard(timePicked);
   resetValues();
   $scoreModalContainer.className = 'score-modal-container';
@@ -249,6 +251,7 @@ function correctPokemon(event) {
   guess = guess.toLowerCase();
 
   if (guess === pokemonName) {
+    correctIDList.push(randomIDList[currentID]);
     userScore++;
     currentID++;
     $pokemonImg.className = 'pokemon-img hidden';
@@ -295,49 +298,39 @@ function interpretLeaderboard(time) {
       $leaderboardTabList[i].className = 'lb-tab';
     }
   }
+
+  for (let i = 0; i < $leaderboardSlotList.length; i++) {
+    $leaderboardSlotList[i].textContent = '--';
+  }
+
   switch (time) {
     case 1:
       $leaderboardTabList[0].className = 'lb-tab lb-active';
       const oneMinScores = sortScores(scores.quizType.default.oneMin);
-      for (let i = 0; i < $leaderboardSlotList.length; i++) {
-        if (oneMinScores[i] !== undefined) {
-          $leaderboardSlotList[i].textContent = oneMinScores[i] + '/' + pokemonAmount;
-        } else {
-          $leaderboardSlotList[i].textContent = '--';
-        }
+      console.log(oneMinScores);
+      for (let i = 0; i < oneMinScores.length; i++) {
+        $leaderboardSlotList[i].textContent = oneMinScores[i].score + '/' + pokemonAmount;
       }
       break;
     case 5:
       $leaderboardTabList[1].className = 'lb-tab lb-active';
       const fiveMinScores = sortScores(scores.quizType.default.fiveMin);
-      for (let i = 0; i < $leaderboardSlotList.length; i++) {
-        if (fiveMinScores[i] !== undefined) {
-          $leaderboardSlotList[i].textContent = fiveMinScores[i] + '/' + pokemonAmount;
-        } else {
-          $leaderboardSlotList[i].textContent = '--';
-        }
+      for (let i = 0; i < fiveMinScores.length; i++) {
+        $leaderboardSlotList[i].textContent = fiveMinScores[i].score + '/' + pokemonAmount;
       }
       break;
     case 10:
       $leaderboardTabList[2].className = 'lb-tab lb-active';
       const tenMinScores = sortScores(scores.quizType.default.tenMin);
-      for (let i = 0; i < $leaderboardSlotList.length; i++) {
-        if (tenMinScores[i] !== undefined) {
-          $leaderboardSlotList[i].textContent = tenMinScores[i] + '/' + pokemonAmount;
-        } else {
-          $leaderboardSlotList[i].textContent = '--';
-        }
+      for (let i = 0; i < tenMinScores.length; i++) {
+        $leaderboardSlotList[i].textContent = tenMinScores[i].score + '/' + pokemonAmount;
       }
       break;
     case 20:
       $leaderboardTabList[3].className = 'lb-tab lb-active';
       const twentyMinScores = sortScores(scores.quizType.default.twentyMin);
-      for (let i = 0; i < $leaderboardSlotList.length; i++) {
-        if (twentyMinScores[i] !== undefined) {
-          $leaderboardSlotList[i].textContent = twentyMinScores[i] + '/' + pokemonAmount;
-        } else {
-          $leaderboardSlotList[i].textContent = '--';
-        }
+      for (let i = 0; i < twentyMinScores.length; i++) {
+        $leaderboardSlotList[i].textContent = twentyMinScores[i].score + '/' + pokemonAmount;
       }
       break;
     default:
