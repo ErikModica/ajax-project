@@ -174,30 +174,12 @@ a:active {
 /* SCORE DISPLAY MODAL */
 
 .score-modal-container {
-  position: fixed;
   background-color: rgba(0, 0, 0, 0.808);
-  min-height: 100vh;
-  width: 100%;
-  z-index: 2;
 }
 
 .view-score-modal {
   background-color: rgba(255, 255, 255, 0.699);
-  display: flex;
-  flex-wrap: wrap;
   font-size: 54px;
-  justify-content: center;
-  margin: 20% auto;
-  width: 40%;
-}
-
-.view-score-modal > div {
-  text-align: center;
-  width: 100%;
-}
-
-.view-score-modal > a {
-  margin: 0 auto;
 }
 
 /* LEADERBOARD PAGE */
@@ -214,10 +196,22 @@ a:active {
 }
 
 .lb-item {
+  position: relative;
   font-size: 32px;
   border-bottom: 2px solid black;
   list-style-position: inside;
 }
+
+.view-correct-pokemon-icon {
+  font-weight: normal;
+  transition: color .2s;
+}
+
+.view-correct-pokemon-icon:hover {
+  cursor: pointer;
+  color: white;
+}
+
 
 .lb-item:last-child {
   border-bottom: none;

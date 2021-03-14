@@ -2,6 +2,7 @@
 
 
 var scores = {
+  nextQuizID: 1,
   quizType: {
     default: {
       oneMin: [],

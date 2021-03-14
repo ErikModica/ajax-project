@@ -3,7 +3,7 @@ let rightAnswer = false;
 let currentID = 0;
 let pokemonName = null;
 let randomIDList = shuffle(1, pokemonAmount);
-const correctIDList = [];
+let correctIDList = [];
 let userScore = 0;
 let intervalIDUserTimer = null;
 let intervalIDFiveSecondTimer = null;
@@ -38,6 +38,7 @@ const $userTotalScore = document.querySelector('.user-end-score');
 const $leaderboardTabContainer = document.querySelector('.lb-tab-container');
 const $leaderboardTabList = document.querySelectorAll('.lb-tab');
 const $leaderboardSlotList = document.querySelectorAll('.lb-item');
+const $leaderboardBody = document.querySelector('.lb-body');
 
 $answerBox.addEventListener('input', correctPokemon);
 $skipButton.addEventListener('click', skipPokemon);
@@ -53,7 +54,8 @@ $leaderboardTabContainer.addEventListener('click', chooseLeaderboard);
 $abortQuizButton.addEventListener('click', openAbortModal);
 $abortModalContainer.addEventListener('click', abortQuiz);
 
-//takes in an array of numbers and sorts them from highest to lowest
+//takes in an array of objects and sorts them from their score property from
+//  highest to lowest.
 function sortScores(array) {
   const sortedArray = array.sort(function(a, b) {
     return b.score - a.score;
@@ -222,21 +224,21 @@ function submitQuiz() {
 
   switch (timePicked) {
     case 1:
-      scores.quizType.default.oneMin.push({ score: userScore, correctPokemon: correctIDList });
+      scores.quizType.default.oneMin.push({ score: userScore, correctPokemon: correctIDList , quizID: scores.nextQuizID });
       break;
     case 5:
-      scores.quizType.default.fiveMin.push({ score: userScore, correctPokemon: correctIDList });
+      scores.quizType.default.fiveMin.push({ score: userScore, correctPokemon: correctIDList, quizID: scores.nextQuizID });
       break;
     case 10:
-      scores.quizType.default.tenMin.push({ score: userScore, correctPokemon: correctIDList });
+      scores.quizType.default.tenMin.push({ score: userScore, correctPokemon: correctIDList, quizID: scores.nextQuizID });
       break;
     case 20:
-      scores.quizType.default.twentyMin.push({ score: userScore, correctPokemon: correctIDList });
+      scores.quizType.default.twentyMin.push({ score: userScore, correctPokemon: correctIDList, quizID: scores.nextQuizID });
       break;
     default:
       console.log('incorrect time slot');
   }
-  console.log(correctIDList);
+  scores.nextQuizID++;
   interpretLeaderboard(timePicked);
   resetValues();
   $scoreModalContainer.className = 'score-modal-container';
@@ -289,7 +291,7 @@ function showLeaderboard() {
   interpretLeaderboard(1);
 }
 
-//when the a number(1, 5, 10, or 20) depicting the time of the quiz is passed as an
+//when the a number(1, 5, 10, or 20) referencing the time of the quiz is passed as an
 //  argument, this function deactivates all current active leaderboard stats and
 //  displays the correct leaderboard.
 function interpretLeaderboard(time) {
@@ -307,9 +309,12 @@ function interpretLeaderboard(time) {
     case 1:
       $leaderboardTabList[0].className = 'lb-tab lb-active';
       const oneMinScores = sortScores(scores.quizType.default.oneMin);
-      console.log(oneMinScores);
       for (let i = 0; i < oneMinScores.length; i++) {
         $leaderboardSlotList[i].textContent = oneMinScores[i].score + '/' + pokemonAmount;
+        $viewCorrectPokemonIcon = document.createElement('i');
+        $viewCorrectPokemonIcon.setAttribute('data-quiz-id', scores.quizType.default.oneMin[i].quizID);
+        $viewCorrectPokemonIcon.setAttribute('class', 'fas fa-bars view-correct-pokemon-icon');
+        $leaderboardSlotList[i].appendChild($viewCorrectPokemonIcon);
       }
       break;
     case 5:
@@ -399,6 +404,7 @@ function resetValues() {
   $scoreTracker.className = 'score-tracker hidden';
   $userTotalScore.textContent = `${userScore}/${pokemonAmount}`;
 
+  correctIDList = [];
   time = null;
   mode = null;
   randomIDList = shuffle(1, pokemonAmount);
@@ -411,4 +417,19 @@ function resetValues() {
   seconds = 59;
   imgSeconds = 5;
   timePicked = null;
+}
+
+
+$leaderboardBody.addEventListener('click', showLBItemStats);
+
+function showLBItemStats(event) {
+  if (event.target.tagName === 'I') {
+    const selectedID = parseInt(event.target.dataset.quizId);
+    let i = 0;
+    while (scores.quizType.default.oneMin[i].quizID !== selectedID && i < scores.quizType.default.oneMin.length) {
+      i++;
+    }
+    console.log(scores.quizType.default.oneMin[i]);
+  }
+
 }
