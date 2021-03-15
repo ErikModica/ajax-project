@@ -11,6 +11,7 @@ h1, h2 {
   display: flex;
   justify-content: center;
   padding: 1rem;
+  flex-basis: 100%;
 }
 
 /* HOME PAGE */
@@ -153,6 +154,48 @@ h1, h2 {
 
 .view-score-modal > a {
   margin: 0 auto;
+}
+
+/* LEADERBOARD ITEM STATS POP UP */
+
+.score-modal-container {
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+.lb-item-stats-modal {
+  display: flex;
+  justify-content: space-between;
+  margin: 20% auto;
+  width: 80%;
+  max-width: 500px;
+}
+
+.lb-stat-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .2rem;
+  flex-basis: 100%;
+}
+
+.lb-stat-img-column {
+  flex-basis: 15%;
+}
+
+.lb-stat-img-column > img {
+  max-width: 100px;
+  width: 100%;
+}
+
+
+.lb-stat-name-column {
+  width: 70%;
+}
+
+.lb-stat-check-column {
+  width: 15%;
 }
 
 /* LEADERBOARD PAGE */

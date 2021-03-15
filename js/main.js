@@ -322,6 +322,10 @@ function interpretLeaderboard(time) {
       const fiveMinScores = sortScores(scores.quizType.default.fiveMin);
       for (let i = 0; i < fiveMinScores.length; i++) {
         $leaderboardSlotList[i].textContent = fiveMinScores[i].score + '/' + pokemonAmount;
+        $viewCorrectPokemonIcon = document.createElement('i');
+        $viewCorrectPokemonIcon.setAttribute('data-quiz-id', scores.quizType.default.fiveMin[i].quizID);
+        $viewCorrectPokemonIcon.setAttribute('class', 'fas fa-bars view-correct-pokemon-icon');
+        $leaderboardSlotList[i].appendChild($viewCorrectPokemonIcon);
       }
       break;
     case 10:
@@ -329,6 +333,10 @@ function interpretLeaderboard(time) {
       const tenMinScores = sortScores(scores.quizType.default.tenMin);
       for (let i = 0; i < tenMinScores.length; i++) {
         $leaderboardSlotList[i].textContent = tenMinScores[i].score + '/' + pokemonAmount;
+        $viewCorrectPokemonIcon = document.createElement('i');
+        $viewCorrectPokemonIcon.setAttribute('data-quiz-id', scores.quizType.default.tenMin[i].quizID);
+        $viewCorrectPokemonIcon.setAttribute('class', 'fas fa-bars view-correct-pokemon-icon');
+        $leaderboardSlotList[i].appendChild($viewCorrectPokemonIcon);
       }
       break;
     case 20:
@@ -336,6 +344,10 @@ function interpretLeaderboard(time) {
       const twentyMinScores = sortScores(scores.quizType.default.twentyMin);
       for (let i = 0; i < twentyMinScores.length; i++) {
         $leaderboardSlotList[i].textContent = twentyMinScores[i].score + '/' + pokemonAmount;
+        $viewCorrectPokemonIcon = document.createElement('i');
+        $viewCorrectPokemonIcon.setAttribute('data-quiz-id', scores.quizType.default.twentyMin[i].quizID);
+        $viewCorrectPokemonIcon.setAttribute('class', 'fas fa-bars view-correct-pokemon-icon');
+        $leaderboardSlotList[i].appendChild($viewCorrectPokemonIcon);
       }
       break;
     default:
@@ -429,7 +441,33 @@ function showLBItemStats(event) {
     while (scores.quizType.default.oneMin[i].quizID !== selectedID && i < scores.quizType.default.oneMin.length) {
       i++;
     }
-    console.log(scores.quizType.default.oneMin[i]);
+    console.log(scores.quizType.default.oneMin[i].correctPokemon);
+    renderStatList(scores.quizType.default.oneMin[i].correctPokemon);
+
   }
 
+}
+
+function renderStatList(pokemonIDs) {
+
+  for (let i = 0; i < pokemonIDs.length; i++) {
+    const $lbStatRow = document.createElement('div');
+    $lbStatRow.className = 'lb-stat-row';
+
+    const $lbStatImgColumn = document.createElement('div');
+    $lbStatImgColumn.className = 'lb-stat-img-column';
+
+    const $lbStatImg = document.createElement('img');
+    $lbStatImg.setAttribute('src', )
+
+    const $lbStatNameColumn = document.createElement('div');
+    $lbStatNameColumn.className = 'lb-stat-name-column';
+    $lbStatNameColumn.textContent = '';
+
+    const $lbStatCheckColumn = document.createElement('div');
+    $lbStatCheckColumn.className = 'lb-stat-check-column';
+
+    const lbStatCheck = document.createElement('i');
+    lbStatCheck.className = 'fas fa-check';
+  }
 }
