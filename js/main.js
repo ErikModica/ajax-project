@@ -433,6 +433,7 @@ function resetValues() {
 
 
 $leaderboardBody.addEventListener('click', showLBItemStats);
+const $lbStatListContainer = document.querySelector('.lb-item-stats-modal');
 
 function showLBItemStats(event) {
   if (event.target.tagName === 'I') {
@@ -451,23 +452,57 @@ function showLBItemStats(event) {
 function renderStatList(pokemonIDs) {
 
   for (let i = 0; i < pokemonIDs.length; i++) {
+
     const $lbStatRow = document.createElement('div');
     $lbStatRow.className = 'lb-stat-row';
 
     const $lbStatImgColumn = document.createElement('div');
     $lbStatImgColumn.className = 'lb-stat-img-column';
+    $lbStatRow.appendChild($lbStatImgColumn);
 
     const $lbStatImg = document.createElement('img');
-    $lbStatImg.setAttribute('src', )
+    $lbStatImg.setAttribute('src', );
+    $lbStatImgColumn.appendChild($lbStatImg);
 
     const $lbStatNameColumn = document.createElement('div');
     $lbStatNameColumn.className = 'lb-stat-name-column';
     $lbStatNameColumn.textContent = '';
+    $lbStatRow.appendChild($lbStatNameColumn);
+    fetchCorrectPokemon();
 
     const $lbStatCheckColumn = document.createElement('div');
     $lbStatCheckColumn.className = 'lb-stat-check-column';
+    $lbStatRow.appendChild($lbStatCheckColumn);
 
-    const lbStatCheck = document.createElement('i');
-    lbStatCheck.className = 'fas fa-check';
+    const $lbStatCheck = document.createElement('i');
+    $lbStatCheck.className = 'fas fa-check';
+    $lbStatCheckColumn.appendChild($lbStatCheck);
+
+
+    $lbStatListContainer.appendChild()
   }
+}
+
+
+function fetchCorrectPokemon(pokemonIDs) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + pokemonIDs[i]);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+
+    if (xhr.status !== 200) {
+      console.log('INVALID POKEMON ID');
+    }
+
+
+    $lbStatNameColumn.textContent = xhr.response.species.name;
+    $lbStatImg.setAttribute('src', xhr.response.sprites.front_default)
+
+    // const responseData = {};
+    // responseData.name = xhr.response.species.name;
+    // responseData.img = xhr.response.sprites.front_default;
+
+    // return responseData;
+  });
+  xhr.send();
 }
