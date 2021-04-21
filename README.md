@@ -9,7 +9,7 @@ A quiz app that tests the user's knowledge of the names of different Pokémon(cu
 - JavaScript
 
 ## Live Demo
-Select a time limit and test your skills! https://erikmodica.github.io/ajax-project/
+Select a time limit and test your skills! https://erikmodica.github.io/whos-that-pokemon/
 
 ## Feature List
 - User can pick their desired time limit
